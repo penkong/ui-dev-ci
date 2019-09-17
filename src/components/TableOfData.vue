@@ -1,31 +1,29 @@
 
 
 <template>
-  <div class="q-pa-md">
-    <table class="data-table fixed_header">
-      <thead>
-        <tr>
-          <th>head1</th>
-          <th>ID</th>
-          <th>عنوان</th>
-          <th>تاریخ ثبت</th>
-          <th>امکانات</th>
-        </tr>
-      </thead>
+  <table class="data-table fixed_header">
+    <thead>
+      <tr>
+        <th>head1</th>
+        <th>ID</th>
+        <th>عنوان</th>
+        <th>تاریخ ثبت</th>
+        <th>امکانات</th>
+      </tr>
+    </thead>
 
-      <tbody>
-        <tr v-for="n in 100" :key="n">
-          <td>cell1_1</td>
-          <td>cell2_1</td>
-          <td>cell3_1</td>
-          <td>cell4_1</td>
-          <td>
-            <button :key="size" v-for="size in sizes">...</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <tbody>
+      <tr v-for="n in 100" :key="n">
+        <td>cell1_1</td>
+        <td>cell2_1</td>
+        <td>cell3_1</td>
+        <td>cell4_1</td>
+        <td>
+          <button :key="size" v-for="size in sizes">...</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 
@@ -75,7 +73,6 @@ export default {
   }
   thead th {
     font-size: 0.8rem;
-
     font-weight: bold;
     color: #7a7a7a7c;
     text-align: right;

@@ -1,5 +1,5 @@
 <template>
-  <div class="ci-list q-pa-md" dir="rtl">
+  <div class="ci-list" dir="rtl">
     <table class="data-table">
       <thead>
         <tr>

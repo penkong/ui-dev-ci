@@ -1,42 +1,17 @@
 <template>
   <div class="header">
-    <div style="margin-left: 1rem;" class="row text-left sl">
-      <div class="q-pa-md" dir="rtl">
-        <q-avatar class="q-mr-3">
-          <img src="https://cdn.quasar.dev/img/avatar.png" class="img" />
-        </q-avatar>
-        <q-btn-dropdown color="white" label="کاربر محترم" class="text-blue-10 shadow-0">
-          <q-list>
-            <q-item
-              clickable
-              v-close-popup
-              @click="onItemClick"
-              class="font-set text-blue-10"
-              dir="rtl"
-            >
-              <q-item-section>
-                <q-item-label>تغییر تصویر کاربر</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item
-              clickable
-              v-close-popup
-              @click="onLogout"
-              class="font-set text-blue-10"
-              dir="rtl"
-            >
-              <q-item-section>
-                <q-item-label>خروج</q-item-label>
-              </q-item-section>
-            </q-item>
-            <template v-slot:after>
-              <q-avatar>
-                <img src="https://cdn.quasar.dev/img/avatar5.jpg" />
-              </q-avatar>
-            </template>
-          </q-list>
-        </q-btn-dropdown>
+    <div class="navbar">
+      <div class="dropdown">
+        <button class="dropbtn">
+          <i class="fa fa-caret-down"></i>
+          ناحیه کاربری
+        </button>
+        <div class="dropdown-content">
+          <a href="#">تغییر تصویر</a>
+          <a href="#">خروج</a>
+        </div>
       </div>
+      <img src="https://cdn.quasar.dev/img/avatar.png" class="img" />
     </div>
   </div>
   <!-- <header class="header"></header> -->
@@ -70,30 +45,66 @@ export default {
   z-index: 5;
   background-color: rgb(255, 255, 255);
   z-index: 100;
-  img {
+  .navbar {
+    overflow: hidden;
+    font-family: Arial;
+    margin-left: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    .dropdown {
+      float: left;
+      overflow: hidden;
+      & .dropbtn {
+        font-size: 1rem;
+        border: none;
+        outline: none;
+        color: rgba(54, 54, 54, 0.603);
+        padding: 0.5rem 4rem;
+        margin-left: 2rem;
+        background-color: white;
+        font-family: "Shabnam-FD";
+        margin: 0; /* Important for vertical align on mobile phones */
+      }
+      .dropdown-content {
+        margin-left: 2rem;
+        width: 14rem;
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 7.9rem;
+        z-index: 5;
+        a {
+          font-family: "Shabnam-FD";
+          direction: rtl;
+          float: none;
+          color: black;
+          padding: 0.5rem 1rem;
+          text-decoration: none;
+          display: block;
+          text-align: right;
+        }
+        & a:hover {
+          background-color: rgb(255, 242, 218);
+        }
+      }
+      &:hover .dropdown-content {
+        display: block;
+      }
+    }
+    img {
+      height: 2.5rem;
+      width: 2.5rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0.25rem;
+      border-radius: 50%;
+      margin-left: 2rem;
+    }
+    & a:hover,
+    .dropdown:hover .dropbtn {
+      background-color: rgb(255, 242, 218);
+    }
   }
-
-  // .sidenav a {
-  //   padding: 0.5rem 0.7rem 0.5rem 1rem;
-  //   text-decoration: none;
-  //   margin-right: 0.5rem;
-  //   font-size: 1.5rem;
-  //   color: #242323;
-  //   display: block;
-  // }
-
-  // .sidenav a:hover {
-  //   color: #f1f1f1;
-  // }
-}
-@font-face {
-  font-family: "Shabnam-FD";
-  src: url(../css/fonts/Shabnam-FD.woff2) format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-
-.font-set {
-  font-family: "Shabnam-FD";
 }
 </style>

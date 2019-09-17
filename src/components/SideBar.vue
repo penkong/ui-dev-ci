@@ -4,9 +4,15 @@
       <router-link to="/ci">
         <img src="statics/CI_LOGO.svg" alt="ci-manager" />
       </router-link>
-      <router-link to="/">Services</router-link>
-      <router-link to="/">Clients</router-link>
-      <router-link to="/">Contact</router-link>
+      <router-link to="/" class="gutter">
+        <i class="fas fa-home"></i>
+      </router-link>
+      <router-link to="/" class="gutter">
+        <i class="fas fa-user-cog"></i>
+      </router-link>
+      <router-link to="/" class="gutter">
+        <i class="fas fa-sign-out-alt"></i>
+      </router-link>
     </nav>
   </div>
 </template>
@@ -34,20 +40,30 @@ export default {
   bottom: 0;
   background-color: rgb(255, 255, 255);
   overflow-x: hidden;
-  padding-top: 1.5rem;
+  padding-top: 0.5rem;
   z-index: 100;
-}
-
-.sidenav a {
-  padding: 0.5rem 0.7rem 0.5rem 1rem;
-  text-decoration: none;
-  margin-right: 0.5rem;
-  font-size: 1.5rem;
-  color: #242323;
-  display: block;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  .gutter {
+    margin-bottom: 1.5rem;
+  }
+  a {
+    padding: 0.5rem 0.7rem 0.5rem 1rem;
+    text-decoration: none;
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+    color: #242323;
+    display: block;
+    transition: all 0.6s ease;
+    &:hover:not(:first-child),
+    &:focus:not(:first-child) {
+      transform: scale(1.1);
+      padding: 0.5rem 4rem 0.5rem 3rem;
+      background-color: #f5f5f5;
+      color: #006fb9;
+    }
+  }
 }
 </style>
