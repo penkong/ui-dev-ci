@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="58.898" height="60" viewBox="0 0 58.898 60">
+    <defs>
+        <style>
+            .cls-1{fill:#f7931a}.cls-2{fill:#f8fbfe;font-size:47px;font-family:LucidaHandwriting-Italic,Lucida Handwriting;font-style:italic;letter-spacing:.05em}
+        </style>
+    </defs>
+    <g id="logo" transform="translate(-1427 -16)">
+        <g id="surface1" transform="translate(1430.472 25.136)">
+            <path id="Path_1" d="M69.242 39.684H25.865a6.03 6.03 0 0 0-6.025 6.024v28.918a6.031 6.031 0 0 0 6.025 6.024h4.989c.41 3.488-.621 5.855-3.2 7.4a1.2 1.2 0 0 0 .621 2.236 14.764 14.764 0 0 0 14.078-9.639h26.889a6.03 6.03 0 0 0 6.025-6.024V45.708a6.03 6.03 0 0 0-6.025-6.024zM35.5 62.577a2.41 2.41 0 1 1 2.41-2.41 2.409 2.409 0 0 1-2.41 2.41zm12.049 0a2.41 2.41 0 1 1 2.41-2.41 2.409 2.409 0 0 1-2.406 2.41zm12.049 0a2.41 2.41 0 1 1 2.41-2.41 2.408 2.408 0 0 1-2.408 2.41z" class="cls-1" data-name="Path 1" transform="translate(-19.84 -39.684)"/>
+            <path id="Rectangle_25" d="M0 0h40v9H0z" class="cls-1" data-name="Rectangle 25" transform="translate(8.528 15.864)"/>
+        </g>
+        <text id="cI" class="cls-2" transform="translate(1455 61)">
+            <tspan x="-27.417" y="0">cI</tspan>
+        </text>
+    </g>
+</svg>
