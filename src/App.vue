@@ -23,5 +23,7 @@ export default {
 
 #q-app {
   font-family: "Shabnam-FD";
+  padding: 0;
+  margin: 0;
 }
 </style>

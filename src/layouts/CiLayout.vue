@@ -33,5 +33,6 @@ export default {
 <style lang="scss">
 #data-style {
   float: left;
+  overflow: hidden;
 }
 </style>

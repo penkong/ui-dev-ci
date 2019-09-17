@@ -1,29 +1,34 @@
 
 
 <template>
-  <table class="data-table fixed_header">
-    <thead>
-      <tr>
-        <th>head1</th>
-        <th>ID</th>
-        <th>عنوان</th>
-        <th>تاریخ ثبت</th>
-        <th>امکانات</th>
-      </tr>
-    </thead>
+  <div>
+    <div class="maghaze">جزییات سند مغازه</div>
+    <table class="data-table fixed_header">
+      <thead>
+        <tr>
+          <th>head1</th>
+          <th>ID</th>
+          <th>عنوان</th>
+          <th>تاریخ ثبت</th>
+          <th>امکانات</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr v-for="n in 100" :key="n">
-        <td>cell1_1</td>
-        <td>cell2_1</td>
-        <td>cell3_1</td>
-        <td>cell4_1</td>
-        <td>
-          <button :key="size" v-for="size in sizes">...</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+      <tbody>
+        <tr v-for="n in 100" :key="n">
+          <td>
+            <input type="checkbox" name id style="border: none;" />
+          </td>
+          <td style="color: #c7c6c6;">cell2_1</td>
+          <td>cell3_1</td>
+          <td style="color: #c7c6c6;">cell4_1</td>
+          <td>
+            <button :key="size" v-for="size in sizes">...</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 
@@ -39,6 +44,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 /////
+.maghaze {
+  position: absolute;
+  z-index: 100;
+  top: -1.6rem;
+  font-size: 0.75rem;
+  color: #c7c6c6;
+  margin-left: 22rem;
+}
 .data-table {
   box-sizing: border-box;
   text-align: right;
@@ -93,7 +106,7 @@ export default {
   td,
   th {
     border: 1px solid #ffffff;
-    padding: 0.3rem 0.5rem;
+    padding: 0.8rem 0.65rem;
     width: 11rem;
   }
   td button {
@@ -106,6 +119,12 @@ export default {
     cursor: pointer;
     text-align: center;
     margin: 0 auto;
+    transition: all 0.3s ease;
+    &:hover {
+      color: white;
+      background-color: rgba(0, 73, 156, 0.623);
+      transform: scale(1.04);
+    }
   }
   tbody td {
     font-size: 12px;

@@ -3,7 +3,7 @@
     <div class="column justify-around">
       <!--  -->
       <!--  -->
-      <div class="col-2 full-width row no-wrap justify-around items-center content-around">
+      <div class="col-1 full-width row no-wrap justify-around items-center content-around">
         <!--  -->
 
         <div class="column q-pa-1 col-3 offset-1">
@@ -22,12 +22,12 @@
       </div>
       <!--  -->
       <!--  -->
-      <div class="button fit row wrap justify-start items-start content-start">
-        <button>افزودن</button>
-      </div>
-      <!--  -->
-      <!--  -->
       <div class="col-10 row justify-around q-mt-sm q-gutter-y-xs">
+        <div class="row-sanad fit row wrap justify-between content-between">
+          <span class="sanad">سندها</span>
+
+          <button class="button">افزودن</button>
+        </div>
         <!--  -->
         <div class="col-sm-3 col-xs-10 right-table">
           <CiListLoader />
@@ -71,6 +71,7 @@ export default {
 .data-show {
   height: auto;
   direction: rtl;
+  max-height: 100vh;
   .right-table {
     min-height: 70vh;
     max-height: 80vh;
@@ -78,12 +79,15 @@ export default {
   .left-table {
     min-height: 70vh;
     max-height: 80vh;
+    position: relative;
   }
   .application {
     label {
       margin-left: 1.5rem;
+      font-size: 0.8rem;
     }
     select {
+      font-size: 0.8rem;
       direction: rtl;
       text-align: center;
       outline: none;
@@ -111,18 +115,30 @@ export default {
       }
     }
   }
-  button {
-    display: block;
-    border-radius: 3px;
-    color: white;
-    background-color: orange;
-    border: none;
-    padding: 0 1rem;
-    height: 50%;
-    cursor: pointer;
-    transition: 0.3s all ease-in;
-    &:hover {
-      background-color: rgb(165, 107, 0);
+  .row-sanad {
+    .sanad {
+      margin-right: 1.6rem;
+    }
+
+    span {
+      color: #c7c6c6;
+      font-size: 0.65rem;
+    }
+    button {
+      display: block;
+      border-radius: 3px;
+      color: white;
+      background-color: orange;
+      border: none;
+      padding: 0 1rem;
+      height: 50%;
+      cursor: pointer;
+      margin-left: 1.75rem;
+      transition: 0.3s all ease-in;
+      &:hover {
+        background-color: rgb(165, 107, 0);
+        transform: scale(1.04);
+      }
     }
   }
 }
