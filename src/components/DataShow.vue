@@ -25,8 +25,12 @@
       <div class="col-10 row justify-around q-mt-sm q-gutter-y-xs">
         <div class="row-sanad fit row wrap justify-between content-between">
           <span class="sanad">سندها</span>
-
-          <button class="button">افزودن</button>
+          <!-- <modals-container /> -->
+          <button class="button" @click="show($event)">
+            افزودن
+            <!-- <modal name="hello-world" @before-open="beforeOpen" @passData="passData"></modal> -->
+          </button>
+          <Modal />
         </div>
         <!--  -->
         <div class="col-sm-3 col-xs-10 right-table">
@@ -46,6 +50,7 @@
 <script>
 import CiListLoader from "./CiListLoader";
 import TableOfData from "./TableOfData";
+import Modal from "./Modal";
 
 export default {
   name: "DataShow",
@@ -62,6 +67,29 @@ export default {
     },
     onLogOut() {
       console.log("on log out");
+    },
+    show() {
+      // this.$modal.show("hello-world", [{ id: "3", title: "hello" }]);
+      this.$modal.show(
+        Modal,
+        {
+          text: "This text is passed as a property"
+        },
+        {
+          height: "auto"
+        },
+        {
+          "before-close": $event => {
+            console.log($event);
+          }
+        }
+      );
+    },
+    hide() {
+      this.$modal.hide("hello-world");
+    },
+    beforeOpen($event) {
+      console.log($event.params);
     }
   }
 };
