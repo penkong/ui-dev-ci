@@ -1,25 +1,9 @@
 <template>
   <div class="header">
     <div style="margin-left: 1rem;" class="row text-left sl">
-      <!-- <q-select
-        transition-show="scale"
-        transition-hide="scale"
-        borderless
-        standout="bg-grey-3 text-white q-pa-0 float-right"
-        v-model="model"
-        :options="options"
-        :dense="dense"
-        class="col-xl-3 col-sm-3"
-      >
-
-
-        <template v-slot:prepend>
-          <q-icon v-if="model !== ''" name="close" @click.stop="model = ''" class="cursor-pointer" />
-        </template>
-      </q-select>-->
       <div class="q-pa-md" dir="rtl">
-        <q-avatar class="q-mr-xs">
-          <img src="https://cdn.quasar.dev/img/avatar.png" />
+        <q-avatar class="q-mr-3">
+          <img src="https://cdn.quasar.dev/img/avatar.png" class="img" />
         </q-avatar>
         <q-btn-dropdown color="white" label="کاربر محترم" class="text-blue-10 shadow-0">
           <q-list>
@@ -55,6 +39,7 @@
       </div>
     </div>
   </div>
+  <!-- <header class="header"></header> -->
 </template>
 
 <script>
@@ -80,6 +65,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/abstract/_mixins.scss";
+.header {
+  z-index: 5;
+  background-color: rgb(255, 255, 255);
+  z-index: 100;
+  img {
+  }
+
+  // .sidenav a {
+  //   padding: 0.5rem 0.7rem 0.5rem 1rem;
+  //   text-decoration: none;
+  //   margin-right: 0.5rem;
+  //   font-size: 1.5rem;
+  //   color: #242323;
+  //   display: block;
+  // }
+
+  // .sidenav a:hover {
+  //   color: #f1f1f1;
+  // }
+}
 @font-face {
   font-family: "Shabnam-FD";
   src: url(../css/fonts/Shabnam-FD.woff2) format("woff2");
@@ -89,14 +95,5 @@ export default {
 
 .font-set {
   font-family: "Shabnam-FD";
-}
-
-.header {
-  .q-menu .scroll {
-    font-family: "Shabnam-FD";
-    direction: rtl;
-  }
-  margin-right: auto;
-  width: 100vw;
 }
 </style>

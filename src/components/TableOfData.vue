@@ -1,97 +1,30 @@
 
 
 <template>
-  <div class="table-list q-pa-md">
-    <q-markup-table :separator="separator" flat bordered class="fixed_header shadow-1">
+  <div class="q-pa-md">
+    <table class="data-table fixed_header">
       <thead>
         <tr>
-          <th class="text-right">Calories</th>
-          <th class="text-right">ID</th>
-          <th class="text-right">عنوان</th>
-          <th class="text-right">تاریخ ثبت</th>
-          <th class="text-right">ویرایش</th>
+          <th>head1</th>
+          <th>ID</th>
+          <th>عنوان</th>
+          <th>تاریخ ثبت</th>
+          <th>امکانات</th>
         </tr>
       </thead>
+
       <tbody>
-        <tr>
-          <td class="text-right">159</td>
-          <td class="text-right">6</td>
-          <td class="text-right">24</td>
-          <td class="text-right">4</td>
-          <td class="text-right">87</td>
-        </tr>
-        <tr>
-          <td class="text-right">237</td>
-          <td class="text-right">9</td>
-          <td class="text-right">37</td>
-          <td class="text-right">4.3</td>
-          <td class="text-right">129</td>
-        </tr>
-        <tr>
-          <td class="text-right">262</td>
-          <td class="text-right">16</td>
-          <td class="text-right">23</td>
-          <td class="text-right">6</td>
-          <td class="text-right">337</td>
-        </tr>
-        <tr>
-          <td class="text-right">305</td>
-          <td class="text-right">3.7</td>
-          <td class="text-right">67</td>
-          <td class="text-right">4.3</td>
-          <td class="text-right">413</td>
-        </tr>
-        <tr>
-          <td class="text-right">356</td>
-          <td class="text-right">16</td>
-          <td class="text-right">49</td>
-          <td class="text-right">3.9</td>
-          <td class="text-right">327</td>
-        </tr>
-        <tr>
-          <td class="text-right">356</td>
-          <td class="text-right">16</td>
-          <td class="text-right">49</td>
-          <td class="text-right">3.9</td>
-          <td class="text-right">327</td>
-        </tr>
-        <tr>
-          <td class="text-right">356</td>
-          <td class="text-right">16</td>
-          <td class="text-right">49</td>
-          <td class="text-right">3.9</td>
-          <td class="text-right">327</td>
-        </tr>
-        <tr>
-          <td class="text-right">356</td>
-          <td class="text-right">16</td>
-          <td class="text-right">49</td>
-          <td class="text-right">3.9</td>
-          <td class="text-right">327</td>
-        </tr>
-        <tr>
-          <td class="text-right">356</td>
-          <td class="text-right">16</td>
-          <td class="text-right">49</td>
-          <td class="text-right">3.9</td>
-          <td class="text-right">327</td>
-        </tr>
-        <tr>
-          <td class="text-right">356</td>
-          <td class="text-right">16</td>
-          <td class="text-right">49</td>
-          <td class="text-right">3.9</td>
-          <td class="text-right">327</td>
-        </tr>
-        <tr>
-          <td class="text-right">356</td>
-          <td class="text-right">16</td>
-          <td class="text-right">49</td>
-          <td class="text-right">3.9</td>
-          <td class="text-right">327</td>
+        <tr v-for="n in 100" :key="n">
+          <td>cell1_1</td>
+          <td>cell2_1</td>
+          <td>cell3_1</td>
+          <td>cell4_1</td>
+          <td>
+            <button :key="size" v-for="size in sizes">...</button>
+          </td>
         </tr>
       </tbody>
-    </q-markup-table>
+    </table>
   </div>
 </template>
 
@@ -101,45 +34,88 @@ export default {
   name: "TableOfData",
   data() {
     return {
-      separator: "horizontal"
+      sizes: ["xs"]
     };
   }
 };
 </script>
 <style lang="scss" scoped>
-.table-list {
-  overflow: auto;
-
-  .tables {
-    direction: rtl;
-  }
-}
-.fixed_header {
+/////
+.data-table {
+  box-sizing: border-box;
   text-align: right;
-  // table-layout: fixed;
-  // border-collapse: collapse;
-}
-
-.fixed_header tbody {
-  display: block;
+  border: 0px solid inherit;
+  background-color: #f9f9f9;
   width: 100%;
-  overflow: auto;
-  height: 60vh;
-}
+  height: 100%;
+  text-align: right;
+  border-collapse: collapse;
+  thead {
+    background: #ffffff;
+    background: -moz-linear-gradient(
+      top,
+      #ffffff 0%,
+      #ffffff 66%,
+      #ffffff 100%
+    );
+    background: -webkit-linear-gradient(
+      top,
+      #ffffff 0%,
+      #ffffff 66%,
+      #ffffff 100%
+    );
+    background: linear-gradient(
+      to bottom,
+      #ffffff 0%,
+      #ffffff 66%,
+      #ffffff 100%
+    );
+    // border-bottom: 2px solid #ffffff;
+    border: none;
+  }
+  thead th {
+    font-size: 0.8rem;
 
-.fixed_header thead tr {
-  display: block;
-}
-
-// .fixed_header thead {
-//   background: black;
-//   color: #fff;
-// }
-
-.fixed_header th,
-.fixed_header td {
-  padding: 5px;
-  text-align: left;
-  width: 200px;
+    font-weight: bold;
+    color: #7a7a7a7c;
+    text-align: right;
+    border-left: 2px solid #f5f5f5;
+  }
+  thead th:first-child {
+    border-left: none;
+  }
+  thead tr {
+    display: block;
+  }
+  tbody {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    height: 60vh;
+  }
+  td,
+  th {
+    border: 1px solid #ffffff;
+    padding: 0.3rem 0.5rem;
+    width: 11rem;
+  }
+  td button {
+    color: blue;
+    display: block;
+    background-color: white;
+    width: 2rem;
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 auto;
+  }
+  tbody td {
+    font-size: 12px;
+    color: #555555;
+  }
+  tr:nth-child(even) {
+    background: #f5f5f5;
+  }
 }
 </style>

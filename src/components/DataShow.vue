@@ -3,18 +3,27 @@
     <div class="column justify-around">
       <!--  -->
       <!--  -->
-      <div class="col-1 row justify-around" style="height: 4rem">
+      <div
+        class="col-2 full-width row no-wrap justify-between items-center content-around"
+        style="height: 4rem"
+      >
         <!--  -->
-        <div class="col-4 col-md-4 column q-pa-1">
-          <div class="col">سیستم مدیریت اپلیکیشن</div>
-          <div class="col">شامل 15 اپلیکیشن</div>
+
+        <div class="column q-pa-1 col-3 offset-1">
+          <div class="col text-h5">سیستم مدیریت اپلیکیشن</div>
+          <div class="col text-subtitle2 q-pt-md text-grey-6">شامل 15 اپلیکیشن</div>
         </div>
         <!--  -->
-        <div class="col-4 col-md-4">
-          <DomainCombo />
-        </div>
-        <div class="col-4 col-md-4 text-left q-ml-lg">
-          <q-btn color="orange" text-color="white" label="افزودن" />
+        <div class="row no-wrap justify-between items-center content-around">
+          <div class="dropdown">
+            <button class="dropbtn">اپلیکیشن</button>
+            <div class="dropdown-content">
+              <a href="#">آب</a>
+              <a href="#">گاز</a>
+              <a href="#">معدن</a>
+            </div>
+          </div>
+          <button class>افزودن</button>
         </div>
       </div>
       <!--  -->
@@ -40,16 +49,23 @@
 <script>
 import CiListLoader from "./CiListLoader";
 import TableOfData from "./TableOfData";
-import DomainCombo from "./DomainCombo";
+
 export default {
   name: "DataShow",
   components: {
-    DomainCombo,
     CiListLoader,
     TableOfData
   },
   data() {
     return {};
+  },
+  methods: {
+    onItemClick() {
+      console.log("Clicked on an Item");
+    },
+    onLogOut() {
+      console.log("on log out");
+    }
   }
 };
 </script>
@@ -65,6 +81,22 @@ export default {
   .left-table {
     min-height: 70vh;
     max-height: 80vh;
+  }
+  .dropdown {
+  }
+  button {
+    display: block;
+    border-radius: 3px;
+    color: white;
+    background-color: orange;
+    border: none;
+    padding: 0 1rem;
+    height: 50%;
+    cursor: pointer;
+    transition: 0.3s all ease-in;
+    &:hover {
+      background-color: rgb(165, 107, 0);
+    }
   }
 }
 </style>

@@ -11,6 +11,9 @@ export default {
 </script>
 
 <style lang="scss">
+@import "scss/abstract/variables";
+@import "scss/abstract/mixins";
+@import "scss/base/base";
 @font-face {
   font-family: "Shabnam-FD";
   src: url(./css/fonts/Shabnam-FD.woff2) format("woff2");
