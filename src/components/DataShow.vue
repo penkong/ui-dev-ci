@@ -13,11 +13,11 @@
         <!--  -->
         <div class="application">
           <label for="application">اپلیکیشن</label>
-          <select @onSelect="loadDomain" name="application">
+          <select v-model="domainName" name="application">
             <option value disabled selected>انتخاب کنید</option>
-            <option @onSelect="loadDomain" value="AB">گاز</option>
-            <option @onSelect="loadDomain" value="BC">آب</option>
-            <option @onSelect="loadDomain" value="BC">معدن</option>
+            <option value="water">آب</option>
+            <option value="gas">گاز</option>
+            <option value="mine">معدن</option>
           </select>
         </div>
       </div>
@@ -29,12 +29,12 @@
           <ModalAdd />
         </div>
         <!--  -->
-        <div class="col-sm-3 col-xs-10 right-table">
-          <CiListLoader />
+        <div v-if="domainName" class="col-sm-3 col-xs-10 right-table">
+          <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" />
         </div>
         <!--  -->
-        <div class="col-sm-8 col-xs-10 left-table">
-          <TableOfData />
+        <div v-if="ciName" class="col-sm-8 col-xs-10 left-table">
+          <TableOfData :domainName="domainName" :ciName="ciName" />
         </div>
       </div>
       <!--  -->
@@ -57,15 +57,20 @@ export default {
   },
   data() {
     return {
-      domainName: ""
+      domainName: "",
+      ciName: ""
     };
   },
+  created() {},
   methods: {
     onItemClick() {
       console.log("Clicked on an Item");
     },
     onLogOut() {
       console.log("on log out");
+    },
+    ciNameCatch(val) {
+      this.ciName = val;
     }
   }
 };

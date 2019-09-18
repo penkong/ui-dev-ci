@@ -12,7 +12,7 @@
       </thead>
       <tbody>
         <tr v-for="option in options" :key="option">
-          <td>{{ option }}</td>
+          <td @click="ciNameCatch(option)">{{ option }}</td>
         </tr>
       </tbody>
     </table>
@@ -21,8 +21,15 @@
 
 
 <script>
+// import EventBus from "../helpers/event-bus";
 export default {
   name: "CiListLoader",
+  props: {
+    domainName: {
+      type: String,
+      validator: v => ["water", "gas", "mine"].includes(v)
+    }
+  },
   data() {
     return {
       separator: "horizontal",
@@ -38,7 +45,7 @@ export default {
       try {
         const url = "http://localhost:5000/ci/getcilist";
         const result = await this.axios.post(url, {
-          domainName: "water"
+          domainName: this.domainName
         });
         const data = await result.data;
         if (data) {
@@ -48,6 +55,10 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    ciNameCatch(option) {
+      console.log(option, "from ci list loader");
+      this.$emit("ciNameCatch", option);
     }
   }
 };
@@ -78,6 +89,7 @@ export default {
       width: 100vw;
       border: 1px solid #ffffff;
       padding: 0.3rem 0.5rem;
+      cursor: pointer;
       // width: 100vw;
     }
     th {

@@ -36,7 +36,15 @@
 import EventBus from "../helpers/event-bus";
 export default {
   name: "TableOfData",
-
+  props: {
+    domainName: {
+      type: String,
+      validator: v => ["water", "gas", "mine"].includes(v)
+    },
+    ciName: {
+      type: String
+    }
+  },
   data() {
     return {
       sizes: ["xs"],
@@ -58,10 +66,11 @@ export default {
       try {
         const url = "http://localhost:5000/ci/get";
         const result = await this.axios.post(url, {
-          domainName: "water",
-          ciName: "ci_ac_input"
+          domainName: this.domainName,
+          ciName: this.ciName
         });
         const data = await result.data;
+        console.log(data);
         if (data) {
           this.options = data;
         }
