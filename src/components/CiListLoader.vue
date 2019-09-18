@@ -11,8 +11,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="n in 40" :key="n">
-          <td>cell1_1</td>
+        <tr v-for="option in options" :key="option">
+          <td>{{ option }}</td>
         </tr>
       </tbody>
     </table>
@@ -26,8 +26,29 @@ export default {
   data() {
     return {
       separator: "horizontal",
-      text: ""
+      text: "",
+      options: null
     };
+  },
+  created() {
+    this.loadCiList();
+  },
+  methods: {
+    async loadCiList() {
+      try {
+        const url = "http://localhost:5000/ci/getcilist";
+        const result = await this.axios.post(url, {
+          domainName: "water"
+        });
+        const data = await result.data;
+        if (data) {
+          this.options = data;
+        }
+        return this.options;
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 };
 </script>

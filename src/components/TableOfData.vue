@@ -6,8 +6,8 @@
     <table class="data-table fixed_header">
       <thead>
         <tr>
-          <th>head1</th>
-          <th>ID</th>
+          <th>انتخاب</th>
+          <th>شماره</th>
           <th>عنوان</th>
           <th>تاریخ ثبت</th>
           <th>امکانات</th>
@@ -15,13 +15,13 @@
       </thead>
 
       <tbody>
-        <tr v-for="n in 100" :key="n">
+        <tr v-for="option in options" :key="option.id">
           <td>
             <input type="checkbox" name id style="border: none;" />
           </td>
-          <td style="color: #c7c6c6;">cell2_1</td>
-          <td>cell3_1</td>
-          <td style="color: #c7c6c6;">cell4_1</td>
+          <td style="color: #c7c6c6;">{{ option.id }}</td>
+          <td>{{ option.title }}</td>
+          <td style="color: #c7c6c6;">data come here</td>
           <td>
             <button :key="size" v-for="size in sizes">...</button>
           </td>
@@ -33,12 +33,43 @@
 
 
 <script>
+import EventBus from "../helpers/event-bus";
 export default {
   name: "TableOfData",
+
   data() {
     return {
-      sizes: ["xs"]
+      sizes: ["xs"],
+      options: null
     };
+  },
+  created() {
+    this.loadTable();
+  },
+  mounted() {
+    EventBus.$on("addedRow", payload => {
+      if (this.options) {
+        this.options.push(payload);
+      }
+    });
+  },
+  methods: {
+    async loadTable() {
+      try {
+        const url = "http://localhost:5000/ci/get";
+        const result = await this.axios.post(url, {
+          domainName: "water",
+          ciName: "ci_ac_input"
+        });
+        const data = await result.data;
+        if (data) {
+          this.options = data;
+        }
+        return this.options;
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 };
 </script>

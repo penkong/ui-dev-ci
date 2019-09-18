@@ -14,6 +14,10 @@ Vue.use(VModal, {
         clickToClose: false
     }
 })
+
+
+
+
 Vue.use(VueAxios, axios);
 Vue.use(Safa);
 Vue.use(VueRouter);
