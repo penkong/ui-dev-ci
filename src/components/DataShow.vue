@@ -25,14 +25,17 @@
       <!--  -->
       <div class="col-10 row justify-around q-mt-sm q-gutter-y-xs">
         <div class="row-sanad fit row wrap justify-between content-between">
-          <span class="sanad">سندها</span>
-          <ModalAdd />
+          <span v-if="domainName" class="sanad">سندها</span>
+          <ModalAdd v-if="ciName" />
         </div>
+        <!--  -->
+        <!--  -->
         <!--  -->
         <div v-if="domainName" class="col-sm-3 col-xs-10 right-table">
           <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" />
         </div>
         <!--  -->
+        <!-- v-if="ciName"  -->
         <div v-if="ciName" class="col-sm-8 col-xs-10 left-table">
           <TableOfData :domainName="domainName" :ciName="ciName" />
         </div>
@@ -70,6 +73,7 @@ export default {
       console.log("on log out");
     },
     ciNameCatch(val) {
+      console.log(val, "from data show comp");
       this.ciName = val;
     }
   }
@@ -80,14 +84,14 @@ export default {
 .data-show {
   height: auto;
   direction: rtl;
-  max-height: 100vh;
+  max-height: 30vh;
   .right-table {
     min-height: 70vh;
-    max-height: 80vh;
+    max-height: 70vh;
   }
   .left-table {
     min-height: 70vh;
-    max-height: 80vh;
+    max-height: 70vh;
     position: relative;
   }
   .application {
@@ -126,7 +130,8 @@ export default {
   }
   .row-sanad {
     .sanad {
-      margin-right: 1.6rem;
+      margin-right: 1.9rem;
+      margin-top: 1.7rem;
     }
 
     span {

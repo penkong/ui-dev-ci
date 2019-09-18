@@ -32,7 +32,10 @@ export default {
 
 <style lang="scss">
 #data-style {
-  float: left;
   overflow: hidden;
+  max-height: 92vh;
+  // @include respond(phone) {
+  //   max-height: auto; //
+  // }
 }
 </style>

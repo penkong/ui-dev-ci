@@ -3,7 +3,7 @@
     <table class="data-table">
       <thead>
         <tr>
-          <th>
+          <th style="font-size: 0.6rem;">
             انتخاب نوع سند
             <input class="input-field" type="text" placeholder="جست و جو" />
             <i class="fas fa-search"></i>
@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="option in options" :key="option">
+        <tr v-for="(option, index) in options" :key="index">
           <td @click="ciNameCatch(option)">{{ option }}</td>
         </tr>
       </tbody>
@@ -47,8 +47,9 @@ export default {
         const result = await this.axios.post(url, {
           domainName: this.domainName
         });
-        const data = await result.data;
+        const data = result.data;
         if (data) {
+          console.log(data);
           this.options = data;
         }
         return this.options;
@@ -88,7 +89,7 @@ export default {
     td {
       width: 100vw;
       border: 1px solid #ffffff;
-      padding: 0.3rem 0.5rem;
+      padding: 0.6rem 0.5rem;
       cursor: pointer;
       // width: 100vw;
     }
@@ -111,7 +112,7 @@ export default {
         margin-right: 2rem;
         width: 50%;
         outline: none;
-        padding: 0 0.5rem;
+        padding: 0.3rem 0.65rem;
       }
     }
     td button {

@@ -6,11 +6,11 @@
     <table class="data-table fixed_header">
       <thead>
         <tr>
-          <th>انتخاب</th>
-          <th>شماره</th>
-          <th>عنوان</th>
-          <th>تاریخ ثبت</th>
-          <th>امکانات</th>
+          <th style="padding-bottom: 0.15rem;">انتخاب</th>
+          <th style="padding-bottom: 0.15rem;">شماره</th>
+          <th style="padding-bottom: 0.15rem;">عنوان</th>
+          <th style="padding-bottom: 0.15rem;">تاریخ ثبت</th>
+          <th style="padding-bottom: 0.15rem;">امکانات</th>
         </tr>
       </thead>
 
@@ -19,7 +19,7 @@
           <td>
             <input type="checkbox" name id style="border: none;" />
           </td>
-          <td style="color: #c7c6c6;">{{ option.id }}</td>
+          <td style="color: #c7c6c6;">{{ option.id}}</td>
           <td>{{ option.title }}</td>
           <td style="color: #c7c6c6;">data come here</td>
           <td>
@@ -38,8 +38,7 @@ export default {
   name: "TableOfData",
   props: {
     domainName: {
-      type: String,
-      validator: v => ["water", "gas", "mine"].includes(v)
+      type: String
     },
     ciName: {
       type: String
@@ -51,25 +50,30 @@ export default {
       options: null
     };
   },
-  created() {
-    this.loadTable();
-  },
+
   mounted() {
     EventBus.$on("addedRow", payload => {
       if (this.options) {
         this.options.push(payload);
       }
     });
+    EventBus.$on("ciName", payload => {
+      console.log(payload, "from table of data");
+      this.$set(this, "ciName", payload);
+    });
+    this.loadTable();
   },
   methods: {
     async loadTable() {
       try {
         const url = "http://localhost:5000/ci/get";
-        const result = await this.axios.post(url, {
+        let result = await this.axios.post(url, {
           domainName: this.domainName,
           ciName: this.ciName
         });
-        const data = await result.data;
+
+        console.log(result);
+        const data = result.data;
         console.log(data);
         if (data) {
           this.options = data;
