@@ -3,7 +3,7 @@
 <template>
   <div>
     <div class="maghaze">جزییات سند مغازه</div>
-    <table class="data-table fixed_header">
+    <table class="data-table fixed_header" @load="loadDataTable">
       <thead>
         <tr>
           <th style="padding-bottom: 0.15rem;">انتخاب</th>
@@ -57,24 +57,22 @@ export default {
         this.options.push(payload);
       }
     });
-    EventBus.$on("ciName", payload => {
-      console.log(payload, "from table of data");
-      this.$set(this, "ciName", payload);
-    });
-    this.loadTable();
+
+    this.loadDataTable(this.ciName.table_name, this.domainName);
   },
   methods: {
-    async loadTable() {
+    async loadDataTable(name, domName) {
       try {
         const url = "http://localhost:5000/ci/get";
-        let result = await this.axios.post(url, {
-          domainName: this.domainName,
-          ciName: this.ciName
-        });
-
-        console.log(result);
+        console.log(domName);
+        console.log(name);
+        const confObj = {
+          domainName: domName,
+          ciName: name
+        };
+        let result = await this.axios.post(url, confObj);
+        // console.log(JSON.parse(result));
         const data = result.data;
-        console.log(data);
         if (data) {
           this.options = data;
         }

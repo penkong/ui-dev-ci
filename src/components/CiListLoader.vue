@@ -12,7 +12,7 @@
       </thead>
       <tbody>
         <tr v-for="(option, index) in options" :key="index">
-          <td @click="ciNameCatch(option)">{{ option }}</td>
+          <td @click="ciNameCatch(option)">{{ option.table_desc}}</td>
         </tr>
       </tbody>
     </table>

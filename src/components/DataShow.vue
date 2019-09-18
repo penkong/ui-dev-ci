@@ -26,18 +26,21 @@
       <div class="col-10 row justify-around q-mt-sm q-gutter-y-xs">
         <div class="row-sanad fit row wrap justify-between content-between">
           <span v-if="domainName" class="sanad">سندها</span>
-          <ModalAdd v-if="ciName" />
+          <ModalAdd v-if="ciNameFromDataShow" />
         </div>
         <!--  -->
         <!--  -->
         <!--  -->
-        <div v-if="domainName" class="col-sm-3 col-xs-10 right-table">
+        <div v-if="domainName && !ciNameFromDataShow">
+          <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" />
+        </div>
+        <div v-if="domainName && ciNameFromDataShow" class="col-sm-3 col-xs-10 right-table">
           <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" />
         </div>
         <!--  -->
         <!-- v-if="ciName"  -->
-        <div v-if="ciName" class="col-sm-8 col-xs-10 left-table">
-          <TableOfData :domainName="domainName" :ciName="ciName" />
+        <div v-if="ciNameFromDataShow" class="col-sm-8 col-xs-10 left-table">
+          <TableOfData :domainName="domainName" :ciName="ciNameFromDataShow" />
         </div>
       </div>
       <!--  -->
@@ -61,7 +64,7 @@ export default {
   data() {
     return {
       domainName: "",
-      ciName: ""
+      ciNameFromDataShow: ""
     };
   },
   created() {},
@@ -73,8 +76,7 @@ export default {
       console.log("on log out");
     },
     ciNameCatch(val) {
-      console.log(val, "from data show comp");
-      this.ciName = val;
+      this.ciNameFromDataShow = val;
     }
   }
 };
@@ -93,6 +95,9 @@ export default {
     min-height: 70vh;
     max-height: 70vh;
     position: relative;
+  }
+  .without-ciName {
+    width: 50%;
   }
   .application {
     label {
