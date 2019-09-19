@@ -24,11 +24,10 @@
       <!--  -->
       <!--  -->
       <div class="col-10 row justify-around q-mt-sm q-gutter-y-xs">
-        <div class="row-sanad fit row wrap justify-between content-between">
-          <span v-if="domainName" class="sanad">سندها</span>
+        <div class="row-sanad fit row wrap justify-end items-start content-start">
+          <!-- <span v-if="domainName" class="sanad">سندها</span> -->
           <ModalAdd v-if="ciNameFromDataShow" />
         </div>
-        <!--  -->
         <!--  -->
         <!--  -->
         <div v-if="domainName && !ciNameFromDataShow">

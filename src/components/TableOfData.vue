@@ -1,41 +1,57 @@
 
 
 <template>
+  <!-- <div class="maghaze">جزییات سند مغازه</div> -->
+  <!-- <th style="padding-bottom: 0.15rem;">تاریخ ثبت</th> -->
+  <!-- <th style="padding-bottom: 0.15rem;">انتخاب</th> -->
   <div>
-    <div class="maghaze">جزییات سند مغازه</div>
     <table class="data-table fixed_header" @load="loadDataTable">
       <thead>
         <tr>
-          <th style="padding-bottom: 0.15rem;">انتخاب</th>
-          <th style="padding-bottom: 0.15rem;">شماره</th>
-          <th style="padding-bottom: 0.15rem;">عنوان</th>
-          <th style="padding-bottom: 0.15rem;">تاریخ ثبت</th>
-          <th style="padding-bottom: 0.15rem;">امکانات</th>
+          <th style="padding-bottom: 0.15rem;width: 8rem;text-align: center;">شماره</th>
+          <th style="padding-bottom: 0.15rem;width: 34rem;text-align:center;">عنوان</th>
+          <th style="padding-bottom: 0.15rem;text-align: center;">امکانات</th>
         </tr>
       </thead>
-
       <tbody>
         <tr v-for="option in options" :key="option.id">
-          <td>
-            <input type="checkbox" name id style="border: none;" />
-          </td>
-          <td style="color: #c7c6c6;">{{ option.id}}</td>
-          <td>{{ option.title }}</td>
-          <td style="color: #c7c6c6;">data come here</td>
-          <td>
-            <button :key="size" v-for="size in sizes">...</button>
+          <td style="color: #c7c6c6;width: 8rem;">{{ option.id}}</td>
+          <td style="width: 34rem;">{{ option.title }}</td>
+          <td style="text-align: center;">
+            <div class="dropdown">
+              <button>...</button>
+              <div class="dropdown-content">
+                <ModalEdit :idProp="option.id" :title="option.title" />
+                <span @click="deleteRow(option.id)">
+                  <i class="far fa-trash-alt"></i>حذف
+                </span>
+              </div>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+  <!-- <td>
+          <input type="checkbox" name id style="border: none;" />
+  </td>-->
+  <!-- <td style="color: #c7c6c6;">data come here</td> -->
+  <!-- <button :key="size" v-for="size in sizes">...</button> -->
+  <!-- <span @click.prevent="showModal ">
+                  <i class="fas fa-pen-square"></i>ویرایش
+                  <div v-if="showEditModal">heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</div>
+  </span>-->
 </template>
 
 
 <script>
+import ModalEdit from "./ModalEdit";
 import EventBus from "../helpers/event-bus";
 export default {
   name: "TableOfData",
+  components: {
+    ModalEdit
+  },
   props: {
     domainName: {
       type: String
@@ -64,19 +80,47 @@ export default {
     async loadDataTable(name, domName) {
       try {
         const url = "http://localhost:5000/ci/get";
-        console.log(domName);
-        console.log(name);
+        // console.log(domName);
+        // console.log(name);
         const confObj = {
           domainName: domName,
           ciName: name
         };
         let result = await this.axios.post(url, confObj);
-        // console.log(JSON.parse(result));
         const data = result.data;
         if (data) {
           this.options = data;
         }
         return this.options;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async editRow(idForEdit) {
+      // const url = "http://localhost:5000/ci/delete";
+      const idForExec = this.options.find(el => el.id === idForEdit).id;
+      const confObj = {
+        id: parseInt(idForExec),
+        domainName: this.domainName,
+        ciName: this.ciName.table_name
+      };
+      try {
+        console.log(confObj, "edit");
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async deleteRow(idForDelete) {
+      const url = "http://localhost:5000/ci/delete";
+      const idForExec = this.options.find(el => el.id === idForDelete).id;
+      const confObj = {
+        id: parseInt(idForExec),
+        domainName: this.domainName,
+        ciName: this.ciName.table_name
+      };
+      try {
+        let result = await this.axios.post(url, confObj);
+        if (result) this.loadDataTable(this.ciName.table_name, this.domainName);
       } catch (error) {
         console.log(error);
       }
@@ -155,23 +199,73 @@ export default {
     color: blue;
     display: block;
     background-color: white;
-    width: 2rem;
+    width: 6.9rem;
     border: 1px solid #d8d8d8;
     border-radius: 3px;
     cursor: pointer;
     text-align: center;
     margin: 0 auto;
     transition: all 0.3s ease;
+    //
+    // background-color: #4caf50;
+    // color: white;
+    // padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
     &:hover {
       color: white;
       background-color: rgba(0, 73, 156, 0.623);
+      background-color: rgba(0, 73, 156, 0.932);
       transform: scale(1.04);
+    }
+  }
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 7rem;
+      text-align: right;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      border-radius: 3px;
+      /* Links inside the dropdown */
+    }
+    .dropdown-content span {
+      border-radius: 3px;
+      color: rgba(0, 73, 156, 0.932);
+      padding: 0.6rem 1rem;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+      /* Change color of dropdown links on hover */
+      &:hover {
+        background-color: #192442;
+        color: rgb(255, 255, 255);
+        i {
+          color: rgba(255, 255, 255, 1);
+        }
+      }
+      i {
+        margin-left: 1rem;
+        color: rgba(0, 73, 156, 0.923);
+      }
+    }
+    /* Show the dropdown menu on hover */
+    &:hover .dropdown-content {
+      display: block;
     }
   }
   tbody td {
     font-size: 12px;
     color: #555555;
   }
+
   tr:nth-child(even) {
     background: #f5f5f5;
   }
