@@ -12,7 +12,7 @@
       </thead>
       <tbody>
         <tr v-for="(option, index) in options" :key="index">
-          <td @click="ciNameCatch(option)">{{ option.table_desc}}</td>
+          <td @click="ciNameCatch(option)">{{ option.table_desc }}</td>
         </tr>
       </tbody>
     </table>
@@ -57,9 +57,12 @@ export default {
         console.log(error);
       }
     },
+    // onChangeDomain() {
+    //   this.loadCiList();
+    // },
     ciNameCatch(option) {
       console.log(option, "from ci list loader");
-      this.$emit("ciNameCatch", option);
+      this.$emit("ciNameCatch", option.table_name);
     }
   }
 };

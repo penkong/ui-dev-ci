@@ -13,15 +13,19 @@
         <!--  -->
         <div class="application">
           <label for="application">اپلیکیشن</label>
-          <select v-model="domainName" name="application">
-            <option value disabled selected>انتخاب کنید</option>
+          <select
+            v-model="domainName"
+            @change="onChange($event)"
+            name="application"
+            style="border: none;"
+          >
+            <option value="select" disabled selected>انتخاب کنید</option>
             <option value="water">آب</option>
             <option value="gas">گاز</option>
             <option value="mine">معدن</option>
           </select>
         </div>
       </div>
-      <!--  -->
       <!--  -->
       <div class="col-10 row justify-around q-mt-sm q-gutter-y-xs">
         <div class="row-sanad fit row wrap justify-end items-start content-start">
@@ -66,7 +70,6 @@ export default {
       ciNameFromDataShow: ""
     };
   },
-  created() {},
   methods: {
     onItemClick() {
       console.log("Clicked on an Item");
@@ -76,7 +79,18 @@ export default {
     },
     ciNameCatch(val) {
       this.ciNameFromDataShow = val;
+      console.log();
+    },
+    onChange($event) {
+      // this.domainName = $event.target.value;
+      if ($event) {
+        // this.domainName = null;
+        this.$set(this, "domainName", $event.target.value);
+      }
     }
+  },
+  watch: {
+    domainName: "onChange"
   }
 };
 </script>

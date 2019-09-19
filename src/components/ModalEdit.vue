@@ -13,13 +13,13 @@
       <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
-          <h4>ویرایش عنوان</h4>
+          <h4 style="text-align: center;">ویرایش عنوان</h4>
           <span class="close">&times;</span>
         </div>
         <div>
           <form class="fit column flex flex-center justify-center" style="margin-top: 2rem;">
             <div class="q-mb-lg q-mt-xl" style="text-align: right;">
-              <label for="id" class="text-black q-ml-lg">شماره</label>
+              <label for="id" class="text-black q-ml-lg" style="font-size: 1rem;">شماره</label>
               <input
                 disabled
                 :value="idProp"
@@ -31,7 +31,7 @@
               />
             </div>
             <div class="q-mb-xs q-mt-lg">
-              <label for="title" class="text-black q-ml-lg">عنوان</label>
+              <label for="title" class="text-black q-ml-lg" style="font-size: 1rem;">عنوان</label>
               <input v-model="title" type="text" id="title" name="title" />
             </div>
             <div style="margin: 0 auto;text-align:center;">
@@ -98,28 +98,6 @@ export default {
         }
       };
     }
-    // onClickButton() {
-    //   let modal = document.getElementById("myModal");
-    //   let btn = document.getElementById("myBtn");
-    //   btn.onclick = function() {
-    //     modal.style.display = "block";
-    //   };
-    // },
-    // onClose() {
-    //   let modal = document.getElementById("myModal");
-    //   let span = document.getElementsByClassName("close")[0];
-    //   span.onclick = function() {
-    //     modal.style.display = "none";
-    //   };
-    // },
-    // onClickOut() {
-    //   let modal = document.getElementById("myModal");
-    //   window.onclick = function(event) {
-    //     if (event.target == modal) {
-    //       modal.style.display = "none";
-    //     }
-    //   };
-    // }
   }
 };
 </script>

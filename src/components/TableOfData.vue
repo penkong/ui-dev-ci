@@ -1,9 +1,6 @@
 
 
 <template>
-  <!-- <div class="maghaze">جزییات سند مغازه</div> -->
-  <!-- <th style="padding-bottom: 0.15rem;">تاریخ ثبت</th> -->
-  <!-- <th style="padding-bottom: 0.15rem;">انتخاب</th> -->
   <div>
     <table class="data-table fixed_header" @load="loadDataTable">
       <thead>
@@ -14,15 +11,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="option in options" :key="option.id">
-          <td style="color: #c7c6c6;width: 8rem;">{{ option.id}}</td>
-          <td style="width: 34rem;">{{ option.title }}</td>
+        <tr v-for="option in options" :key="option.ID || option.id">
+          <!-- problem in data base in sql we have ID and Title in postqre we have id and title -->
+          <td style="color: #c7c6c6;width: 8rem;">{{ option.ID || option.id}}</td>
+          <td style="width: 34rem;">{{ option.Title || option.title }}</td>
           <td style="text-align: center;">
             <div class="dropdown">
               <button>...</button>
               <div class="dropdown-content">
-                <ModalEdit :idProp="option.id" :title="option.title" />
-                <span @click="deleteRow(option.id)">
+                <ModalEdit :idProp="option.ID || option.id" :title="option.Title || option.title" />
+                <span @click="deleteRow(option.ID || option.id)">
                   <i class="far fa-trash-alt"></i>حذف
                 </span>
               </div>
@@ -32,15 +30,6 @@
       </tbody>
     </table>
   </div>
-  <!-- <td>
-          <input type="checkbox" name id style="border: none;" />
-  </td>-->
-  <!-- <td style="color: #c7c6c6;">data come here</td> -->
-  <!-- <button :key="size" v-for="size in sizes">...</button> -->
-  <!-- <span @click.prevent="showModal ">
-                  <i class="fas fa-pen-square"></i>ویرایش
-                  <div v-if="showEditModal">heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</div>
-  </span>-->
 </template>
 
 
@@ -74,17 +63,18 @@ export default {
       }
     });
 
-    this.loadDataTable(this.ciName.table_name, this.domainName);
+    this.loadDataTable(this.ciName, this.domainName);
   },
   methods: {
     async loadDataTable(name, domName) {
+      console.log(name, "from load data table");
       try {
         const url = "http://localhost:5000/ci/get";
         // console.log(domName);
         // console.log(name);
         const confObj = {
           domainName: domName,
-          ciName: name
+          ciName: name.toString()
         };
         let result = await this.axios.post(url, confObj);
         const data = result.data;
@@ -102,7 +92,7 @@ export default {
       const confObj = {
         id: parseInt(idForExec),
         domainName: this.domainName,
-        ciName: this.ciName.table_name
+        ciName: this.ciName
       };
       try {
         console.log(confObj, "edit");
@@ -116,11 +106,11 @@ export default {
       const confObj = {
         id: parseInt(idForExec),
         domainName: this.domainName,
-        ciName: this.ciName.table_name
+        ciName: this.ciName
       };
       try {
         let result = await this.axios.post(url, confObj);
-        if (result) this.loadDataTable(this.ciName.table_name, this.domainName);
+        if (result) this.loadDataTable(this.ciName, this.domainName);
       } catch (error) {
         console.log(error);
       }
