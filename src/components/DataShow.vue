@@ -2,10 +2,8 @@
   <div class="data-show">
     <div class="column justify-around">
       <!--  -->
-      <!--  -->
-      <div class="col-1 full-width row no-wrap justify-around items-center content-around">
+      <div class="col-1 full-width row no-wrap justify-between items-center content-around">
         <!--  -->
-
         <div class="column q-pa-1 col-3 offset-1">
           <div class="col text-h5">سیستم مدیریت اپلیکیشن</div>
           <div class="col text-subtitle2 q-pt-md text-grey-6">شامل 15 اپلیکیشن</div>
@@ -27,21 +25,23 @@
         </div>
       </div>
       <!--  -->
-      <div class="col-10 row justify-around q-mt-sm q-gutter-y-xs">
-        <div class="row-sanad fit row wrap justify-end items-start content-start">
-          <!-- <span v-if="domainName" class="sanad">سندها</span> -->
+      <div
+        v-if="domainName && !ciNameFromDataShow"
+        class="col-10 row justify-around q-mt-sm q-gutter-y-xs"
+      >
+        <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" :key="domainName" />
+      </div>
+      <div class="col-10 row justify-around q-mt-sm q-gutter-y-xs" :key="domainName">
+        <div class="fit row wrap justify-end items-start content-start">
           <ModalAdd v-if="ciNameFromDataShow" />
         </div>
-        <!--  -->
-        <!--  -->
-        <div v-if="domainName && !ciNameFromDataShow">
+        <!-- <div v-if="domainName && !ciNameFromDataShow">
           <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" :key="domainName" />
-        </div>
+        </div>-->
         <div v-if="domainName && ciNameFromDataShow" class="col-sm-3 col-xs-10 right-table">
           <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" :key="domainName" />
         </div>
         <!--  -->
-        <!-- v-if="ciName"  -->
         <div v-if="ciNameFromDataShow" class="col-sm-8 col-xs-10 left-table">
           <TableOfData
             :domainName="domainName"
@@ -50,7 +50,6 @@
           />
         </div>
       </div>
-      <!--  -->
       <!--  -->
     </div>
   </div>
@@ -150,7 +149,7 @@ export default {
       }
     }
   }
-  .row-sanad {
+  /* .row-sanad {
     .sanad {
       margin-right: 1.9rem;
       margin-top: 1.7rem;
@@ -160,6 +159,6 @@ export default {
       color: #c7c6c6;
       font-size: 0.65rem;
     }
-  }
+  } */
 }
 </style>

@@ -5,14 +5,19 @@
         <tr>
           <th style="font-size: 0.6rem;">
             انتخاب نوع سند
-            <input class="input-field" type="text" placeholder="جست و جو" />
-            <i class="fas fa-search"></i>
+            <input
+              class="input-field"
+              type="text"
+              placeholder="جست و جو"
+              v-model.lazy="searchTerm"
+            />
+            <i class="fas fa-search" @click="findAndCallTable"></i>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(option, index) in options" :key="index">
-          <td @click="ciNameCatch(option)">{{ option.table_desc }}</td>
+          <td @click="ciNameCatch(option)" style="cursor:pointer;">{{ option.table_desc }}</td>
         </tr>
       </tbody>
     </table>
@@ -34,7 +39,8 @@ export default {
     return {
       separator: "horizontal",
       text: "",
-      options: null
+      options: null,
+      searchTerm: ""
     };
   },
   created() {
@@ -57,9 +63,12 @@ export default {
         console.log(error);
       }
     },
-    // onChangeDomain() {
-    //   this.loadCiList();
-    // },
+    findAndCallTable() {
+      const table = this.options.find(el => el.table_desk === this.searchTerm);
+      if (table) {
+        this.$emit("ciNameCatch", option.table_name);
+      }
+    },
     ciNameCatch(option) {
       console.log(option, "from ci list loader");
       this.$emit("ciNameCatch", option.table_name);
@@ -108,6 +117,7 @@ export default {
         padding: 0 3px;
         padding-top: px;
         margin: 0 1rem;
+        cursor: pointer;
       }
       input {
         border: 1px solid #d8d8d8;

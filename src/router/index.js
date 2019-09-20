@@ -3,19 +3,17 @@ import axios from 'axios';
 import VueRouter from "vue-router";
 import VueAxios from 'vue-axios'
 import Safa from 'safa-grid-on-one';
-import VModal from 'vue-js-modal'
+// import VModal from 'vue-js-modal'
 
 import routes from "./routes";
 
-Vue.use(VModal, {
-    dynamic: true,
-    injectModalsContainer: true,
-    dynamicDefaults: {
-        clickToClose: false
-    }
-})
-
-
+// Vue.use(VModal, {
+//     dynamic: true,
+//     injectModalsContainer: true,
+//     dynamicDefaults: {
+//         clickToClose: false
+//     }
+// })
 
 
 Vue.use(VueAxios, axios);

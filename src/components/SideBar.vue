@@ -55,7 +55,11 @@ export default {
     color: #242323;
     display: block;
     transition: all 0.6s ease;
-    &:hover:not(:first-child),
+    &:hover {
+      transform: scale(1.1);
+      color: #006fb9;
+    }
+    &:active:not(:first-child),
     &:focus:not(:first-child) {
       transform: scale(1.1);
       padding: 0.5rem 4rem 0.5rem 3rem;

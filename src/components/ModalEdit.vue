@@ -2,14 +2,14 @@
   <span>
     <button
       id="myBtn"
-      style="border: none; background-color: inherit; color: white;outline: none; cursor: pointer;"
-      @click="onMount"
+      style="border: none; background-color: inherit; color: blue;outline: none; cursor: pointer;"
+      @click="onOpenModal"
     >
       <i class="fas fa-pen-square"></i>
       ویرایش
     </button>
     <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <div id="myModal" class="modal" @click="onLoadReadyToClose">
       <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
@@ -72,24 +72,11 @@ export default {
   },
   mounted() {
     // When the user clicks anywhere outside of the modal, close it
-    let modal = document.getElementById("myModal");
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    };
+    this.onLoadReadyToClose(event);
   },
 
   methods: {
-    closeModal() {
-      let modal = document.getElementById("myModal");
-      let span = document.getElementsByClassName("close");
-      // When the user clicks on <span> (x), close the modal
-      span.onclick = function() {
-        modal.style.display = "none";
-      };
-    },
-    onMount() {
+    onOpenModal() {
       // Get the modal
       let modal = document.getElementById("myModal");
       // Get the button that opens the modal
@@ -99,7 +86,6 @@ export default {
         modal.style.display = "block";
       };
     },
-
     async editRow(idForEdit) {
       // const url = "http://localhost:5000/ci/delete";
       const idForExec = this.options.find(el => el.id === idForEdit).id;
@@ -112,6 +98,20 @@ export default {
         console.log(confObj, "edit");
       } catch (error) {
         console.log(error);
+      }
+    },
+    closeModal() {
+      let modal = document.getElementById("myModal");
+      let span = document.getElementsByClassName("close");
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      };
+    },
+    onLoadReadyToClose(event) {
+      let modal = document.getElementById("myModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
       }
     }
   }
@@ -178,6 +178,11 @@ export default {
   }
 }
 /* The Modal (background) */
+#myBtn {
+  &:hover {
+    color: white;
+  }
+}
 form {
   position: relative;
   input {

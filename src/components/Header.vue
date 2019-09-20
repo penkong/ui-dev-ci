@@ -7,8 +7,8 @@
           ناحیه کاربری
         </button>
         <div class="dropdown-content">
-          <a href="#">تغییر تصویر</a>
-          <a href="#">خروج</a>
+          <router-link to="/">تغییر تصویر</router-link>
+          <router-link to="/">خروج</router-link>
         </div>
       </div>
       <img src="https://cdn.quasar.dev/img/avatar.png" class="img" />
@@ -67,6 +67,9 @@ export default {
         font-family: "Shabnam-FD";
         margin: 0; /* Important for vertical align on mobile phones */
       }
+      &:hover .dropdown-content {
+        display: block;
+      }
       .dropdown-content {
         margin-left: 2rem;
         width: 14rem;
@@ -88,9 +91,6 @@ export default {
         & a:hover {
           background-color: rgb(255, 242, 218);
         }
-      }
-      &:hover .dropdown-content {
-        display: block;
       }
     }
     img {

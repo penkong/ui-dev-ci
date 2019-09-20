@@ -74,8 +74,6 @@ export default {
       console.log(name, "from load data table");
       try {
         const url = "http://localhost:5000/ci/get";
-        // console.log(domName);
-        // console.log(name);
         const confObj = {
           domainName: domName,
           ciName: name.toString()
@@ -170,6 +168,14 @@ export default {
     overflow: auto;
     height: 60vh;
   }
+  tbody td {
+    font-size: 12px;
+    color: #555555;
+  }
+
+  tr:nth-child(even) {
+    background: #f5f5f5;
+  }
   td,
   th {
     border: 1px solid #ffffff;
@@ -241,14 +247,6 @@ export default {
     &:hover .dropdown-content {
       display: block;
     }
-  }
-  tbody td {
-    font-size: 12px;
-    color: #555555;
-  }
-
-  tr:nth-child(even) {
-    background: #f5f5f5;
   }
 }
 </style>
