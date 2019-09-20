@@ -14,7 +14,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 style="text-align: center;">ویرایش عنوان</h4>
-          <span class="close">&times;</span>
+          <span class="close" @click="closeModal">&times;</span>
         </div>
         <div>
           <form class="fit column flex flex-center justify-center" style="margin-top: 2rem;">
@@ -32,7 +32,7 @@
             </div>
             <div class="q-mb-xs q-mt-lg">
               <label for="title" class="text-black q-ml-lg" style="font-size: 1rem;">عنوان</label>
-              <input v-model="title" type="text" id="title" name="title" />
+              <input v-model="title" ref="titleForEdit" type="text" id="title" name="title" />
             </div>
             <div style="margin: 0 auto;text-align:center;">
               <button
@@ -63,40 +63,56 @@ export default {
     idProp: {
       type: Number
     },
+    domainName: {
+      type: String
+    },
     title: {
       type: String
     }
   },
   mounted() {
-    // this.onMount();
+    // When the user clicks anywhere outside of the modal, close it
+    let modal = document.getElementById("myModal");
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
   },
+
   methods: {
-    onMount() {
-      // Get the modal
-      var modal = document.getElementById("myModal");
-
-      // Get the button that opens the modal
-      var btn = document.getElementById("myBtn");
-
-      // Get the <span> element that closes the modal
-      var span = document.getElementsByClassName("close")[0];
-
-      // When the user clicks the button, open the modal
-      btn.onclick = function() {
-        modal.style.display = "block";
-      };
-
+    closeModal() {
+      let modal = document.getElementById("myModal");
+      let span = document.getElementsByClassName("close");
       // When the user clicks on <span> (x), close the modal
       span.onclick = function() {
         modal.style.display = "none";
       };
-
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
+    },
+    onMount() {
+      // Get the modal
+      let modal = document.getElementById("myModal");
+      // Get the button that opens the modal
+      let btn = document.getElementById("myBtn");
+      // When the user clicks the button, open the modal
+      btn.onclick = function() {
+        modal.style.display = "block";
       };
+    },
+
+    async editRow(idForEdit) {
+      // const url = "http://localhost:5000/ci/delete";
+      const idForExec = this.options.find(el => el.id === idForEdit).id;
+      const confObj = {
+        id: parseInt(this.idProp),
+        domainName: this.domainName,
+        ciName: this.title
+      };
+      try {
+        console.log(confObj, "edit");
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 };

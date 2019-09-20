@@ -35,15 +35,19 @@
         <!--  -->
         <!--  -->
         <div v-if="domainName && !ciNameFromDataShow">
-          <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" />
+          <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" :key="domainName" />
         </div>
         <div v-if="domainName && ciNameFromDataShow" class="col-sm-3 col-xs-10 right-table">
-          <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" />
+          <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" :key="domainName" />
         </div>
         <!--  -->
         <!-- v-if="ciName"  -->
         <div v-if="ciNameFromDataShow" class="col-sm-8 col-xs-10 left-table">
-          <TableOfData :domainName="domainName" :ciName="ciNameFromDataShow" />
+          <TableOfData
+            :domainName="domainName"
+            :ciName="ciNameFromDataShow"
+            :key="ciNameFromDataShow"
+          />
         </div>
       </div>
       <!--  -->

@@ -57,7 +57,7 @@ export default {
       float: left;
       overflow: hidden;
       & .dropbtn {
-        font-size: 1rem;
+        font-size: 0.8rem;
         border: none;
         outline: none;
         color: rgba(54, 54, 54, 0.603);

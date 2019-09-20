@@ -19,7 +19,11 @@
             <div class="dropdown">
               <button>...</button>
               <div class="dropdown-content">
-                <ModalEdit :idProp="option.ID || option.id" :title="option.Title || option.title" />
+                <ModalEdit
+                  :idProp="option.ID || option.id"
+                  :title="option.Title || option.title"
+                  :domainName="domainName"
+                />
                 <span @click="deleteRow(option.ID || option.id)">
                   <i class="far fa-trash-alt"></i>حذف
                 </span>
@@ -86,20 +90,7 @@ export default {
         console.log(error);
       }
     },
-    async editRow(idForEdit) {
-      // const url = "http://localhost:5000/ci/delete";
-      const idForExec = this.options.find(el => el.id === idForEdit).id;
-      const confObj = {
-        id: parseInt(idForExec),
-        domainName: this.domainName,
-        ciName: this.ciName
-      };
-      try {
-        console.log(confObj, "edit");
-      } catch (error) {
-        console.log(error);
-      }
-    },
+
     async deleteRow(idForDelete) {
       const url = "http://localhost:5000/ci/delete";
       const idForExec = this.options.find(el => el.id === idForDelete).id;

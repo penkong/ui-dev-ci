@@ -4,13 +4,13 @@
       <router-link to="/ci">
         <img src="statics/CI_LOGO.svg" alt="ci-manager" />
       </router-link>
-      <router-link to="/" class="gutter">
+      <router-link to="/" class="gutters">
         <i class="fas fa-home"></i>
       </router-link>
-      <router-link to="/" class="gutter">
+      <router-link to="/" class="gutters">
         <i class="fas fa-user-cog"></i>
       </router-link>
-      <router-link to="/" class="gutter">
+      <router-link to="/" class="gutters">
         <i class="fas fa-sign-out-alt"></i>
       </router-link>
     </nav>
@@ -31,8 +31,6 @@ export default {
 <style lang="scss" scoped>
 .sidenav {
   height: 100vh;
-  /* width: 160px; */
-  // position: fixed;
   position: absolute;
   z-index: 1;
   top: 0;
@@ -46,7 +44,7 @@ export default {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  .gutter {
+  .gutters {
     margin-bottom: 1.5rem;
   }
   a {
