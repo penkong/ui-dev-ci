@@ -14,7 +14,10 @@
         <tr v-for="option in options" :key="option.ID || option.id">
           <!-- problem in data base in sql we have ID and Title in postqre we have id and title -->
           <td style="color: #c7c6c6;width: 8rem;">{{ option.ID || option.id}}</td>
-          <td style="width: 34rem;">{{ option.Title || option.title }}</td>
+          <td
+            style="width: 34rem;"
+            :key="option.Title || option.title"
+          >{{ option.Title || option.title }}</td>
           <td style="text-align: center;">
             <div class="dropdown">
               <button>...</button>
@@ -73,7 +76,7 @@ export default {
   },
   methods: {
     async loadDataTable(name, domName) {
-      console.log(name, "from load data table");
+      // console.log(name, "from load data table");
       try {
         const url = "http://localhost:5000/ci/get";
         const confObj = {
@@ -108,6 +111,8 @@ export default {
     },
     editedRow(val) {
       console.log(val);
+      const updateRowInUI = this.options.find(el => el.id === val.id);
+      updateRowInUI.title = val.title;
     }
   }
 };
@@ -188,7 +193,7 @@ export default {
     width: 11rem;
   }
   td button {
-    color: blue;
+    color: black;
     display: block;
     background-color: white;
     width: 6.9rem;

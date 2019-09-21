@@ -2,7 +2,7 @@
   <span>
     <button
       id="myBtn"
-      style="border: none; background-color: inherit; color: blue;outline: none; cursor: pointer;"
+      style="border: none; background-color: inherit;outline: none; cursor: pointer;"
       @click="onOpenModal"
     >
       <i class="fas fa-pen-square"></i>
@@ -87,9 +87,6 @@ export default {
     closeModal() {
       this.$refs.openModal.style.display = "none";
     },
-    // onLoadReadyToClose() {
-    //   this.$refs.openModal.style.display = "none";
-    // },
     async editRow() {
       try {
         const url = "http://localhost:5000/ci/addrow";
@@ -100,11 +97,11 @@ export default {
           domainName: this.domainName,
           ciName: this.ciName
         };
-        console.log(confObj, url);
+        // console.log(confObj, url);
         const result = await this.axios.post(url, confObj);
         // const data = result.data;
-        console.log(result, "this is data");
-        if (result) {
+        // console.log(result, "this is data");
+        if (result.data) {
           this.$refs.openModal.style.display = "none";
         }
         const dataForTable = {
@@ -144,7 +141,7 @@ export default {
     cursor: pointer;
     /* Change color of dropdown links on hover */
     &:hover {
-      background-color: #192442;
+      // background-color: #192442;
       color: rgb(255, 255, 255);
       i {
         color: rgba(255, 255, 255, 1);
@@ -160,50 +157,28 @@ export default {
     display: block;
   }
 }
-.modal-header {
-  padding: 1rem 2rem;
-  background-color: rgb(0, 94, 202);
-  color: white;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  span {
-    background-color: inherit;
-    color: rgba(0, 73, 156, 0.923);
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0;
-    margin: 0;
-  }
-}
+
 /* The Modal (background) */
 #myBtn {
   &:hover {
     color: white;
   }
 }
-form {
-  position: relative;
-  input {
-    padding: 0.5rem 1rem;
-    border: 1px solid rgb(223, 223, 223);
-    border-radius: 3px;
-  }
-  button {
-    position: absolute;
-    bottom: -10rem;
-    right: 5rem;
-    font-size: 1.4rem;
-    cursor: pointer;
-    transition: all 0.4s ease-in-out;
-    &:hover {
-      transform: scale(1.02);
-      // color: rgb(0, 94, 202);
-      background-color: rgb(0, 94, 202);
-    }
+
+.button {
+  display: block;
+  border-radius: 3px;
+  color: white;
+  background-color: orange;
+  border: none;
+  padding: 0 1rem;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 1.75rem;
+  transition: 0.3s all ease-in;
+  &:hover {
+    background-color: rgb(165, 107, 0);
+    transform: scale(1.04);
   }
 }
 .modal {
@@ -219,35 +194,88 @@ form {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 1.5rem;
+    border: 1px solid #888;
+    width: 27rem;
+    height: 27rem;
+    z-index: 9999;
+    position: relative;
+    .modal-header {
+      padding: 0.7rem 1rem;
+      background-color: rgb(0, 94, 202);
+      color: white;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      text-align: right;
+      right: 0;
+      left: 0;
+      h4 {
+        text-align: right;
+        margin-left: 9rem;
+        // position: absolute;
+        // right: 0;
+      }
+      span {
+        // background-color: inherit;
+        color: rgba(0, 73, 156, 0.923);
+        position: absolute;
+        top: -0.7rem;
+        left: -1rem;
+        padding: 0;
+        margin: 0;
+        /* The Close Button */
+      }
+      .close {
+        color: #ffffff;
+        position: absolute;
+        left: 1rem;
+        z-index: 40;
+        padding: 1rem;
+        margin-left: -1rem;
+        float: right;
+        font-size: 2rem;
+        font-weight: bold;
+        // background-color: #fff;
+      }
 
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 30%;
-  height: 70%;
-  z-index: 9999;
-  position: relative;
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: #fff;
-}
-
-.close:hover,
-.close:focus {
-  background-color: #fff;
-
-  text-decoration: none;
-  cursor: pointer;
+      .close:hover,
+      .close:focus {
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+    form {
+      position: relative;
+      margin-top: 3rem;
+      input {
+        padding: 0.5rem 1rem;
+        border: 1px solid rgb(223, 223, 223);
+        border-radius: 3px;
+      }
+      button {
+        margin-top: 3rem;
+        color: white;
+        border: none;
+        background-color: rgba(0, 73, 156, 0.932);
+        padding: 0.7rem 4rem;
+        border-radius: 0.5rem;
+        // width: 6rem;
+        // text-align: right;
+        font-size: 1.4rem;
+        cursor: pointer;
+        transition: all 0.4s ease-in-out;
+        &:hover {
+          transform: scale(1.02);
+          background-color: rgb(0, 94, 202);
+        }
+      }
+    }
+  }
 }
 </style>
 

@@ -26,19 +26,11 @@
                 @keydown.shift.tab.prevent
               />
             </div>
-            <div class="q-mb-xs q-mt-lg">
+            <div class="q-mb-xs q-mt-md">
               <label for="title" class="text-black q-ml-lg" style="font-size: 1rem;">عنوان</label>
               <input v-model="title" ref="titleForEdit" type="text" id="title" name="title" />
             </div>
-            <div style="margin: 0 auto;text-align:center;">
-              <button
-                type="submit"
-                class="text-white q-pa-xs"
-                style="border: none;
-                background-color: rgba(0, 73, 156, 0.932);
-                padding: 0.7rem 6rem;border-radius: 0.5rem;"
-              >افزودن</button>
-            </div>
+            <button type="submit">افزودن</button>
           </form>
         </div>
       </div>
@@ -97,6 +89,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "../scss/abstract/_mixins.scss";
+
 .button {
   display: block;
   border-radius: 3px;
@@ -113,123 +107,6 @@ export default {
     transform: scale(1.04);
   }
 }
-.modal-add .v--modal-overlay {
-  position: absolute;
-  left: 0;
-}
-.v--modal-box .v--modal {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.modal-add {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  input {
-    margin-left: auto;
-  }
-}
-.dropdown {
-  position: relative;
-  display: inline-block;
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 7rem;
-    text-align: right;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-radius: 3px;
-    /* Links inside the dropdown */
-  }
-  .dropdown-content span {
-    border-radius: 3px;
-    color: rgba(0, 73, 156, 0.932);
-    padding: 0.6rem 1rem;
-    text-decoration: none;
-    display: block;
-    cursor: pointer;
-    /* Change color of dropdown links on hover */
-    &:hover {
-      background-color: #192442;
-      color: rgb(255, 255, 255);
-      i {
-        color: rgba(255, 255, 255, 1);
-      }
-    }
-    i {
-      margin-left: 1rem;
-      color: rgba(0, 73, 156, 0.923);
-    }
-  }
-  /* Show the dropdown menu on hover */
-  &:hover .dropdown-content {
-    display: block;
-  }
-}
-.close {
-  color: #ffffff;
-  position: absolute;
-  left: 1rem;
-  z-index: 40;
-  padding: 1rem;
-  margin-left: 1rem;
-  float: right;
-  font-size: 2rem;
-  font-weight: bold;
-  // background-color: #fff;
-}
-
-.close:hover,
-.close:focus {
-  text-decoration: none;
-  cursor: pointer;
-}
-.modal-header {
-  padding: 1rem 2rem;
-  background-color: rgb(0, 94, 202);
-  color: white;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  span {
-    background-color: inherit;
-    color: rgba(0, 73, 156, 0.923);
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0;
-    margin: 0;
-    /* The Close Button */
-  }
-}
-/* The Modal (background) */
-form {
-  position: relative;
-  input {
-    padding: 0.5rem 1rem;
-    border: 1px solid rgb(223, 223, 223);
-    border-radius: 3px;
-  }
-  button {
-    position: absolute;
-    bottom: -10rem;
-    right: 5rem;
-    font-size: 1.4rem;
-    cursor: pointer;
-    transition: all 0.4s ease-in-out;
-    &:hover {
-      transform: scale(1.02);
-      // color: rgb(0, 94, 202);
-      background-color: rgb(0, 94, 202);
-    }
-  }
-}
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -243,19 +120,90 @@ form {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 1.5rem;
+    border: 1px solid #888;
+    width: 27rem;
+    height: 27rem;
+    z-index: 9999;
+    position: relative;
+    .modal-header {
+      padding: 0.7rem 1rem;
+      background-color: rgb(0, 94, 202);
+      color: white;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      text-align: right;
+      right: 0;
+      left: 0;
+      h4 {
+        text-align: right;
+        margin-left: 9rem;
+        // position: absolute;
+        // right: 0;
+      }
+      span {
+        // background-color: inherit;
+        color: rgba(0, 73, 156, 0.923);
+        position: absolute;
+        top: -0.7rem;
+        left: -1rem;
+        padding: 0;
+        margin: 0;
+        /* The Close Button */
+      }
+      .close {
+        color: #ffffff;
+        position: absolute;
+        left: 1rem;
+        z-index: 40;
+        padding: 1rem;
+        margin-left: -1rem;
+        float: right;
+        font-size: 2rem;
+        font-weight: bold;
+        // background-color: #fff;
+      }
 
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 30%;
-  height: 70%;
-  z-index: 9999;
-  position: relative;
+      .close:hover,
+      .close:focus {
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+    form {
+      position: relative;
+      margin-top: 3rem;
+      input {
+        padding: 0.5rem 1rem;
+        border: 1px solid rgb(223, 223, 223);
+        border-radius: 3px;
+      }
+      button {
+        margin-top: 3rem;
+        color: white;
+        border: none;
+        background-color: rgba(0, 73, 156, 0.932);
+        padding: 0.7rem 4rem;
+        border-radius: 0.5rem;
+        // width: 6rem;
+        // text-align: right;
+        font-size: 1.4rem;
+        cursor: pointer;
+        transition: all 0.4s ease-in-out;
+        &:hover {
+          transform: scale(1.02);
+          background-color: rgb(0, 94, 202);
+        }
+      }
+    }
+  }
 }
+/* The Modal (background) */
 </style>
 
 

@@ -55,7 +55,7 @@ export default {
         });
         const data = result.data;
         if (data) {
-          console.log(data);
+          // console.log(data);
           this.options = data;
         }
         return this.options;
@@ -70,7 +70,7 @@ export default {
       }
     },
     ciNameCatch(option) {
-      console.log(option, "from ci list loader");
+      // console.log(option, "from ci list loader");
       this.$emit("ciNameCatch", option.table_name);
     }
   }
