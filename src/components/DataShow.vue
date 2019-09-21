@@ -47,7 +47,11 @@
           :key="domainName"
           class="col-sm-3 col-xs-10 right-table"
         >
-          <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" />
+          <CiListLoader
+            :domainName="domainName"
+            @ciNameCatch="ciNameCatch"
+            @ciNameFromSearch="ciNameFromSearch"
+          />
         </div>
         <!--  -->
         <div v-if="ciNameFromDataShow" class="col-sm-8 col-xs-10 left-table">
@@ -90,7 +94,6 @@ export default {
     },
     ciNameCatch(val) {
       this.ciNameFromDataShow = val;
-      console.log();
     },
     onChange($event) {
       // this.domainName = $event.target.value;
@@ -98,6 +101,10 @@ export default {
         // this.domainName = null;
         this.$set(this, "domainName", $event);
       }
+    },
+    ciNameFromSearch(val) {
+      console.log(val, "from dataShow");
+      this.ciNameFromDataShow = val.table_name;
     }
   },
   watch: {

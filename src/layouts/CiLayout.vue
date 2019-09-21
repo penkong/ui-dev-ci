@@ -31,11 +31,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../scss/abstract/_mixins.scss";
 #data-style {
   overflow: hidden;
   max-height: 92vh;
-  // @include respond(phone) {
-  //   max-height: auto; //
-  // }
+  @include respond(phone) {
+    overflow: auto;
+    max-height: auto;
+    height: auto; //
+  }
 }
 </style>

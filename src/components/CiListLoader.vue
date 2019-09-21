@@ -9,9 +9,9 @@
               class="input-field"
               type="text"
               placeholder="جست و جو"
-              v-model.lazy="searchTerm"
+              v-model="searchTerm"
             />
-            <i class="fas fa-search" @click="findAndCallTable"></i>
+            <i class="fas fa-search" @click="callSearchTerm"></i>
           </th>
         </tr>
       </thead>
@@ -37,7 +37,6 @@ export default {
   },
   data() {
     return {
-      separator: "horizontal",
       text: "",
       options: null,
       searchTerm: ""
@@ -47,6 +46,11 @@ export default {
     this.loadCiList();
   },
   methods: {
+    callSearchTerm() {
+      this.options = this.options.filter(
+        el => el.table_desc === this.searchTerm
+      );
+    },
     async loadCiList() {
       try {
         const url = "http://localhost:5000/ci/getcilist";
@@ -63,12 +67,7 @@ export default {
         console.log(error);
       }
     },
-    findAndCallTable() {
-      const table = this.options.find(el => el.table_desk === this.searchTerm);
-      if (table) {
-        this.$emit("ciNameCatch", table.table_name);
-      }
-    },
+
     ciNameCatch(option) {
       // console.log(option, "from ci list loader");
       this.$emit("ciNameCatch", option.table_name);
