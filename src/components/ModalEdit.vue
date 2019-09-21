@@ -9,15 +9,19 @@
       ویرایش
     </button>
     <!-- The Modal -->
-    <div id="myModal" class="modal" @click="onLoadReadyToClose">
+    <div id="myModal" class="modal" ref="openModal">
       <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
           <h4 style="text-align: center;">ویرایش عنوان</h4>
-          <span class="close" @click="closeModal">&times;</span>
+          <span class="close" @click="closeModal" ref="closeModal">&times;</span>
         </div>
         <div>
-          <form class="fit column flex flex-center justify-center" style="margin-top: 2rem;">
+          <form
+            @submit.prevent="editRow"
+            class="fit column flex flex-center justify-center"
+            style="margin-top: 2rem;"
+          >
             <div class="q-mb-lg q-mt-xl" style="text-align: right;">
               <label for="id" class="text-black q-ml-lg" style="font-size: 1rem;">شماره</label>
               <input
@@ -32,7 +36,7 @@
             </div>
             <div class="q-mb-xs q-mt-lg">
               <label for="title" class="text-black q-ml-lg" style="font-size: 1rem;">عنوان</label>
-              <input v-model="title" ref="titleForEdit" type="text" id="title" name="title" />
+              <input v-model="titleData" ref="titleForEdit" type="text" id="title" name="title" />
             </div>
             <div style="margin: 0 auto;text-align:center;">
               <button
@@ -41,7 +45,7 @@
                 style="border: none;
                 background-color: rgba(0, 73, 156, 0.932);
                 padding: 0.7rem 6rem;border-radius: 0.5rem;"
-              >افزودن</button>
+              >ویرایش</button>
             </div>
           </form>
         </div>
@@ -68,50 +72,48 @@ export default {
     },
     title: {
       type: String
+    },
+    ciName: {
+      type: String
     }
   },
   mounted() {
-    // When the user clicks anywhere outside of the modal, close it
-    this.onLoadReadyToClose(event);
+    this.titleData = this.title;
   },
-
   methods: {
     onOpenModal() {
-      // Get the modal
-      let modal = document.getElementById("myModal");
-      // Get the button that opens the modal
-      let btn = document.getElementById("myBtn");
-      // When the user clicks the button, open the modal
-      btn.onclick = function() {
-        modal.style.display = "block";
-      };
-    },
-    async editRow(idForEdit) {
-      // const url = "http://localhost:5000/ci/delete";
-      const idForExec = this.options.find(el => el.id === idForEdit).id;
-      const confObj = {
-        id: parseInt(this.idProp),
-        domainName: this.domainName,
-        ciName: this.title
-      };
-      try {
-        console.log(confObj, "edit");
-      } catch (error) {
-        console.log(error);
-      }
+      this.$refs.openModal.style.display = "block";
     },
     closeModal() {
-      let modal = document.getElementById("myModal");
-      let span = document.getElementsByClassName("close");
-      // When the user clicks on <span> (x), close the modal
-      span.onclick = function() {
-        modal.style.display = "none";
-      };
+      this.$refs.openModal.style.display = "none";
     },
-    onLoadReadyToClose(event) {
-      let modal = document.getElementById("myModal");
-      if (event.target == modal) {
-        modal.style.display = "none";
+    // onLoadReadyToClose() {
+    //   this.$refs.openModal.style.display = "none";
+    // },
+    async editRow() {
+      try {
+        const url = "http://localhost:5000/ci/addrow";
+        // const idForExec = this.options.find(el => el.id === idForEdit).id;
+        const confObj = {
+          id: parseInt(this.idProp),
+          title: this.titleData,
+          domainName: this.domainName,
+          ciName: this.ciName
+        };
+        console.log(confObj, url);
+        const result = await this.axios.post(url, confObj);
+        // const data = result.data;
+        console.log(result, "this is data");
+        if (result) {
+          this.$refs.openModal.style.display = "none";
+        }
+        const dataForTable = {
+          id: parseInt(this.idProp),
+          title: this.titleData
+        };
+        this.$emit("editedRow", dataForTable);
+      } catch (error) {
+        console.log(error);
       }
     }
   }

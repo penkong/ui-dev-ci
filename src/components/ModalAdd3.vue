@@ -1,24 +1,39 @@
 <template>
   <div>
-    <button class="button" @click.prevent="show">افزودن</button>
-    <modal name="modal-add" class="modal-add" @opened="opened">
-      <div>
-        <h2>افزودن اطلاعات</h2>
-        <form @submit.prevent="addRow">
-          <div>
-            <label for="id">ID</label>
-            <input v-model="id" type="text" id="id" name="id" ref="ids" @keydown.shift.tab.prevent />
+    <span>
+      <button class="button" id="myBtn" @click="onClick">افزودن</button>
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 style="text-align: center;">افزودن به لیست</h4>
+            <span class="close">&times;</span>
           </div>
           <div>
-            <label for="title">title</label>
-            <input v-model="title" type="text" id="title" name="title" />
+            <form class="fit column flex flex-center justify-center" style="margin-top: 2rem;">
+              <div class="q-mb-lg q-mt-xl" style="text-align: right;">
+                <label for="id" class="text-black q-ml-lg" style="font-size: 1rem;">شماره</label>
+                <input type="text" id="id" name="id" ref="ids" @keydown.shift.tab.prevent />
+              </div>
+              <div class="q-mb-xs q-mt-lg">
+                <label for="title" class="text-black q-ml-lg" style="font-size: 1rem;">عنوان</label>
+                <input v-model="title" type="text" id="title" name="title" />
+              </div>
+              <div style="margin: 0 auto;text-align:center;">
+                <button
+                  type="submit"
+                  class="text-white q-pa-xs"
+                  style="border: none;
+                background-color: rgba(0, 73, 156, 0.932);
+                padding: 0.7rem 6rem;border-radius: 0.5rem;"
+                >افزودن</button>
+              </div>
+            </form>
           </div>
-          <div>
-            <button type="submit" class="bg-red text-white q-pa-lg">افزودن</button>
-          </div>
-        </form>
+        </div>
       </div>
-    </modal>
+    </span>
   </div>
 </template>
 

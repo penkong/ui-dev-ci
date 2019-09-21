@@ -66,7 +66,7 @@ export default {
     findAndCallTable() {
       const table = this.options.find(el => el.table_desk === this.searchTerm);
       if (table) {
-        this.$emit("ciNameCatch", option.table_name);
+        this.$emit("ciNameCatch", table.table_name);
       }
     },
     ciNameCatch(option) {

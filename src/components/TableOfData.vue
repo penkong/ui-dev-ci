@@ -23,6 +23,8 @@
                   :idProp="option.ID || option.id"
                   :title="option.Title || option.title"
                   :domainName="domainName"
+                  :ciName="ciName"
+                  @editedRow="editedRow"
                 />
                 <span @click="deleteRow(option.ID || option.id)">
                   <i class="far fa-trash-alt"></i>حذف
@@ -103,6 +105,9 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    editedRow(val) {
+      console.log(val);
     }
   }
 };

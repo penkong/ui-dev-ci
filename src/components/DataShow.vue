@@ -2,9 +2,9 @@
   <div class="data-show">
     <div class="column justify-around">
       <!--  -->
-      <div class="col-1 full-width row no-wrap justify-between items-center content-around">
+      <div class="col-1 full-width row no-wrap justify-between q-mx-xl items-center content-around">
         <!--  -->
-        <div class="column q-pa-1 col-3 offset-1">
+        <div class="column q-pa-1 col-3 offset-1" style="margin-right: 2rem;">
           <div class="col text-h5">سیستم مدیریت اپلیکیشن</div>
           <div class="col text-subtitle2 q-pt-md text-grey-6">شامل 15 اپلیکیشن</div>
         </div>
@@ -13,7 +13,7 @@
           <label for="application">اپلیکیشن</label>
           <select
             v-model="domainName"
-            @change="onChange($event)"
+            @change="onChange($event.target.value)"
             name="application"
             style="border: none;"
           >
@@ -33,13 +33,21 @@
       </div>
       <div class="col-10 row justify-around q-mt-sm q-gutter-y-xs" :key="domainName">
         <div class="fit row wrap justify-end items-start content-start">
-          <ModalAdd v-if="ciNameFromDataShow" />
+          <ModalAdd
+            v-if="ciNameFromDataShow"
+            :domainName="domainName"
+            :ciName="ciNameFromDataShow"
+          />
         </div>
         <!-- <div v-if="domainName && !ciNameFromDataShow">
           <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" :key="domainName" />
         </div>-->
-        <div v-if="domainName && ciNameFromDataShow" class="col-sm-3 col-xs-10 right-table">
-          <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" :key="domainName" />
+        <div
+          v-if="domainName && ciNameFromDataShow"
+          :key="domainName"
+          class="col-sm-3 col-xs-10 right-table"
+        >
+          <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" />
         </div>
         <!--  -->
         <div v-if="ciNameFromDataShow" class="col-sm-8 col-xs-10 left-table">
@@ -88,7 +96,7 @@ export default {
       // this.domainName = $event.target.value;
       if ($event) {
         // this.domainName = null;
-        this.$set(this, "domainName", $event.target.value);
+        this.$set(this, "domainName", $event);
       }
     }
   },
@@ -116,6 +124,7 @@ export default {
     width: 50%;
   }
   .application {
+    margin-left: 2rem;
     label {
       margin-left: 1.5rem;
       font-size: 0.8rem;

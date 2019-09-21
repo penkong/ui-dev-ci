@@ -1,24 +1,34 @@
 <template>
   <span>
-    <button class="button" id="myBtn" @click="onClick">افزودن</button>
-
+    <button id="myBtn" class="button" @click="onOpenModal">افزودن</button>
     <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <div id="myModal" class="modal" ref="openModal">
       <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
-          <h4 style="text-align: center;">افزودن به لیست</h4>
-          <span class="close">&times;</span>
+          <h4 style="text-align: center;">افزودن اطلاعات</h4>
+          <span class="close" @click="closeModal" ref="closeModal">&times;</span>
         </div>
         <div>
-          <form class="fit column flex flex-center justify-center" style="margin-top: 2rem;">
+          <form
+            @submit.prevent="addRow"
+            class="fit column flex flex-center justify-center"
+            style="margin-top: 2rem;"
+          >
             <div class="q-mb-lg q-mt-xl" style="text-align: right;">
               <label for="id" class="text-black q-ml-lg" style="font-size: 1rem;">شماره</label>
-              <input type="text" id="id" name="id" ref="ids" @keydown.shift.tab.prevent />
+              <input
+                v-model="id"
+                type="number"
+                id="id"
+                name="id"
+                ref="ids"
+                @keydown.shift.tab.prevent
+              />
             </div>
             <div class="q-mb-xs q-mt-lg">
               <label for="title" class="text-black q-ml-lg" style="font-size: 1rem;">عنوان</label>
-              <input v-model="title" type="text" id="title" name="title" />
+              <input v-model="title" ref="titleForEdit" type="text" id="title" name="title" />
             </div>
             <div style="margin: 0 auto;text-align:center;">
               <button
@@ -37,52 +47,51 @@
 </template>
 
 <script>
-// import EventBus from "../helpers/event-bus.js";
+import EventBus from "../helpers/event-bus.js";
 export default {
-  name: "ModalEdit",
+  name: "ModalAdd",
   data() {
     return {
-      titleData: ""
+      title: "",
+      id: null
     };
   },
   props: {
-    idProp: {
-      type: Number
+    domainName: {
+      type: String
     },
-    title: {
+    ciName: {
       type: String
     }
   },
-  mounted() {
-    // this.onMount();
-  },
   methods: {
-    onclick() {
-      // Get the modal
-      var modal = document.getElementById("myModal");
-
-      // Get the button that opens the modal
-      var btn = document.getElementById("myBtn");
-
-      // Get the <span> element that closes the modal
-      var span = document.getElementsByClassName("close")[0];
-
-      // When the user clicks the button, open the modal
-      btn.onclick = function() {
-        modal.style.display = "block";
+    onOpenModal() {
+      this.$refs.openModal.style.display = "block";
+    },
+    closeModal() {
+      this.$refs.openModal.style.display = "none";
+    },
+    async addRow() {
+      const url = "http://localhost:5000/ci/addrow";
+      const dataForTable = { id: parseInt(this.id), title: this.title };
+      const confObj = {
+        id: parseInt(this.id),
+        title: this.title,
+        domainName: this.domainName,
+        ciName: this.ciName
       };
-
-      // When the user clicks on <span> (x), close the modal
-      span.onclick = function() {
-        modal.style.display = "none";
-      };
-
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
+      try {
+        const result = await this.axios.post(url, confObj);
+        if (result) {
+          console.log(result.data[0], "from add modal");
+          EventBus.$emit("addedRow", dataForTable);
+          this.$refs.openModal.style.display = "none";
+          this.id = null;
+          this.title = "";
         }
-      };
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 };
@@ -161,6 +170,24 @@ export default {
     display: block;
   }
 }
+.close {
+  color: #ffffff;
+  position: absolute;
+  left: 1rem;
+  z-index: 40;
+  padding: 1rem;
+  margin-left: 1rem;
+  float: right;
+  font-size: 2rem;
+  font-weight: bold;
+  // background-color: #fff;
+}
+
+.close:hover,
+.close:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
 .modal-header {
   padding: 1rem 2rem;
   background-color: rgb(0, 94, 202);
@@ -178,6 +205,7 @@ export default {
     left: 0;
     padding: 0;
     margin: 0;
+    /* The Close Button */
   }
 }
 /* The Modal (background) */
@@ -227,23 +255,6 @@ form {
   height: 70%;
   z-index: 9999;
   position: relative;
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: #fff;
-}
-
-.close:hover,
-.close:focus {
-  background-color: #fff;
-
-  text-decoration: none;
-  cursor: pointer;
 }
 </style>
 
