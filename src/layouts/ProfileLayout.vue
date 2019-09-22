@@ -20,12 +20,15 @@
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
 export default {
+  name: "ProfileLayout",
   components: {
     Header,
     SideBar
   },
   data() {
-    return {};
+    return {
+      leftDrawer: true
+    };
   }
 };
 </script>

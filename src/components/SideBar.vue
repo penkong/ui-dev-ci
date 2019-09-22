@@ -1,13 +1,13 @@
 <template>
   <div class="row shadow-1">
     <nav class="sidenav col-1">
-      <router-link to="/ci">
+      <router-link to="/">
         <img src="statics/CI_LOGO.svg" alt="ci-manager" />
       </router-link>
       <router-link to="/ci" class="gutters">
         <i class="fas fa-home"></i>
       </router-link>
-      <router-link to="/" class="gutters">
+      <router-link to="/profile" class="gutters">
         <i class="fas fa-user-cog"></i>
       </router-link>
       <router-link to="/" class="gutters">

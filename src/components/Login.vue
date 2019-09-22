@@ -5,7 +5,7 @@
     </div>
     <form @submit.prevent="loginUser">
       <div class="first-input">
-        <input v-model="userName" type="text" name="email" placeholder="نام کاربری" />
+        <input v-model="username" type="text" name="email" placeholder="نام کاربری" />
         <i class="fa fa-envelope" aria-hidden="true"></i>
       </div>
       <div>
@@ -28,23 +28,24 @@ export default {
   name: "Login",
   data() {
     return {
-      userName: "",
+      username: "",
       password: null,
       toggler: false
     };
   },
   methods: {
     async loginUser() {
-      if (this.userName && this.password) {
+      if (this.username && this.password) {
         const confObj = {
-          userName: this.userName,
+          username: this.username,
           password: this.password,
           remember: this.toggler
         };
+        // const url = "http://192.168.100.181:1234/users/login";
         // const logUser = await this.axios.post(url, confObj);
         console.log(confObj, "login config");
       }
-      this.userName = "";
+      this.username = "";
       this.password = null;
     },
     rememberMe($event) {

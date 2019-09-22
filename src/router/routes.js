@@ -17,6 +17,16 @@ const routes = [{
             component: () =>
                 import ("pages/CiPage.vue")
         }]
+    },
+    {
+        path: "/profile",
+        component: () =>
+            import ("layouts/ProfileLayout.vue"),
+        children: [{
+            path: "",
+            component: () =>
+                import ("pages/ProfilePage.vue")
+        }]
     }
 ];
 
