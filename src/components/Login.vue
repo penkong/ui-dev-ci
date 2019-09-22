@@ -4,26 +4,21 @@
       <img src="statics/logo.png" alt />
     </div>
     <form @submit.prevent="loginUser">
-      <div class="user">
-        <input v-model="userName" type="text" name="email" placeholder="Email" />
-
-        <span>
-          <i class="fa fa-envelope" aria-hidden="true"></i>
-        </span>
+      <div class="first-input">
+        <input v-model="userName" type="text" name="email" placeholder="نام کاربری" />
+        <i class="fa fa-envelope" aria-hidden="true"></i>
       </div>
-      <div class="password">
-        <input v-model="password" type="password" name="pass" placeholder="Password" />
-        <span>
-          <i class="fa fa-lock" aria-hidden="true"></i>
-        </span>
+      <div>
+        <input v-model="password" type="password" name="password" placeholder="کلمه عبور" />
+        <i class="fa fa-lock" aria-hidden="true"></i>
       </div>
-      <div class="remember-me">
-        <input type="checkbox" />
-        مرا به خاطر داشته باش
-      </div>
-      <div class="blu-btn">
-        <button type="submit">ورود</button>
-      </div>
+      <p>
+        <input type="checkbox" ref="checkbox" @click="rememberMe($event)" />
+        <span @click="checkBox">مرا به خاطر داشته باش</span>
+      </p>
+      <button type="submit">
+        <span>ورود</span>
+      </button>
     </form>
   </div>
 </template>
@@ -34,59 +29,147 @@ export default {
   data() {
     return {
       userName: "",
-      password: null
+      password: null,
+      toggler: false
     };
   },
   methods: {
-    loginUser() {
-      console.log("hello");
+    async loginUser() {
+      if (this.userName && this.password) {
+        const confObj = {
+          userName: this.userName,
+          password: this.password,
+          remember: this.toggler
+        };
+        // const logUser = await this.axios.post(url, confObj);
+        console.log(confObj, "login config");
+      }
+      this.userName = "";
+      this.password = null;
+    },
+    rememberMe($event) {
+      console.log($event.target.value);
+      if ($event.target.value === "on") {
+        this.toggler = true;
+      }
+    },
+    checkBox() {
+      this.$refs.checkbox.checked = !this.toggler;
+      this.toggler = !this.toggler;
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/abstract/_mixins.scss";
 .login {
   font-size: 1rem;
   position: absolute;
-  top: 3rem;
+  top: 5rem;
   right: 9rem;
-  background-color: red;
-  height: 40rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 1rem;
+  height: 35rem;
   width: 30rem;
+
   .img-container {
     width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    height: 8rem;
     img {
+      // margin-top: 2rem;
       width: 90%;
     }
   }
   form {
-    .user,
-    .password {
-      margin: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    div {
       position: relative;
       input {
-        border: none;
-        width: 12rem;
+        outline: none;
+        width: 22.5rem;
+        direction: rtl;
         height: 1rem;
-        border-radius: 4px;
-        padding: 1rem;
+        background-color: #f0f0f0;
+        border-radius: 0.7rem;
+        padding: 1.5rem 3rem 1.5rem 3rem;
+        border: 1px solid #b6b6b6;
+        &::placeholder {
+          color: #b6b6b6;
+        }
+      }
+      .first-input {
+        margin-top: 6rem;
+        margin-bottom: 0 !important;
+      }
+      i {
+        position: absolute;
+        margin-right: 0.8rem;
+        right: 0.4rem;
+        top: 2.4rem;
+        color: #b6b6b6;
+      }
+    }
+
+    p {
+      input {
+        color: #2196f3;
+        margin-left: 0.5rem;
       }
       span {
-        position: absolute;
-        right: 0.4rem;
-        top: 0;
+        color: #2196f3;
       }
+      width: 73%;
+      cursor: pointer;
+      display: flex;
+      justify-content: flex-start;
+      height: 3rem;
+      outline: none;
+      align-items: center;
+      flex-direction: row;
     }
-    // .password {
-    //   width: 8rem;
-    //   height: 2rem;
-    // }
-    .remember-me {
-      height: 2rem;
-    }
-    .blu-btn {
-      height: 2rem;
+
+    button {
+      background-color: #2196f3; /* Green */
+      color: rgb(255, 255, 255);
+      border-radius: 0.9rem;
+      width: 22rem;
+      height: 3rem;
+      border: none;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      position: relative;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.4s ease-out;
+      outline: none;
+      &:hover {
+        background-color: #007ee6;
+        transform: scale(1.02);
+      }
+      &:active {
+        background-color: #006cc5;
+        transform: scale(0.98);
+      }
+      span {
+        outline: none;
+        position: absolute;
+        letter-spacing: 2px;
+        font-weight: 500;
+        font-size: 1.5rem;
+        right: 9rem;
+        top: -1.6rem;
+      }
     }
   }
 }
