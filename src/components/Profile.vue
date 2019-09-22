@@ -121,7 +121,7 @@ export default {
     .user {
       // background-color: red;
       width: 60%;
-      height: 90%;
+      height: 100%;
       .card {
         width: 90%;
         height: 90%;
@@ -129,12 +129,12 @@ export default {
         border-radius: 0.5rem;
         border: 1px solid #e6e6e6;
         form {
-          margin-top: -1rem;
+          // margin-top: -1rem;
           width: 100%;
           height: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: space-evenly;
+          // justify-content: space-around;
           align-items: center;
           .input-row {
             width: 90%;
@@ -144,7 +144,7 @@ export default {
             align-items: center;
             div {
               width: 90%;
-              margin: 0 1rem;
+              margin: 1rem 1rem;
               label {
                 display: block;
                 margin-bottom: 1rem;
@@ -159,8 +159,8 @@ export default {
             }
           }
           .desc {
-            // margin-top: -1rem;
-            margin-bottom: 2rem;
+            margin-top: 1rem;
+            // margin-bottom: 2rem;
             width: 100%;
             max-height: 35%;
             margin-right: 6rem;
@@ -174,6 +174,7 @@ export default {
             textarea {
               border: 1px solid #e6e6e6;
               border-radius: 0.5rem;
+              height: 10rem;
               max-height: 100%;
               min-width: 87%;
               max-width: 87%;
@@ -185,7 +186,7 @@ export default {
             border: none;
             border-radius: 1rem;
             height: 8%;
-            margin-top: -2rem;
+            margin-top: 2rem;
             background-color: #2196f3;
             color: white;
             cursor: pointer;
@@ -206,34 +207,35 @@ export default {
     .change-pass {
       // background-color: brown;
       width: 30%;
-      height: 90%;
+      height: 100%;
       .left-card {
         width: 90%;
         height: 90%;
         background-color: #f7fafc;
         border-radius: 0.5rem;
-
         border: 1px solid #e6e6e6;
         form {
-          margin-top: -1rem;
-          margin-right: 1.9rem;
+          // margin-top: -1rem;
           height: 100%;
-          width: 90%;
+          width: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: space-around;
+          // justify-content: space-around;
           align-items: center;
+          margin-top: 1rem;
+          margin-right: 1rem;
           div {
-            margin-bottom: -1rem;
-            width: 100%;
-            height: 10%;
+            // margin-bottom: -1rem;
+            width: 90%;
             // margin-right: 6rem;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
+            margin-bottom: 2rem;
+            // align-items: flex-start;
+            // justify-content: flex-start;
             label {
               margin-bottom: 1rem;
+              display: block;
             }
             input {
               border-radius: 0.25rem;
@@ -244,11 +246,11 @@ export default {
             }
           }
           .change-btn {
-            width: 92%;
+            width: 80%;
             border: none;
             border-radius: 1rem;
             height: 8%;
-            margin-top: 1rem;
+            margin-top: 6.8rem;
             margin-left: 1.6rem;
             background-color: #2196f3;
             color: white;
