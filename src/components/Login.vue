@@ -69,6 +69,11 @@ export default {
   position: absolute;
   top: 5rem;
   right: 9rem;
+  @include respond(phone) {
+    right: 2rem;
+    height: 45rem;
+    width: 40rem;
+  }
   background-color: rgb(255, 255, 255);
   border-radius: 1rem;
   height: 35rem;
@@ -82,6 +87,9 @@ export default {
     img {
       // margin-top: 2rem;
       width: 90%;
+    }
+    @include respond(phone) {
+      margin-bottom: 3rem;
     }
   }
   form {
@@ -133,6 +141,10 @@ export default {
       outline: none;
       align-items: center;
       flex-direction: row;
+      @include respond(phone) {
+        margin-bottom: 3rem;
+        margin-right: 6.5rem;
+      }
     }
 
     button {

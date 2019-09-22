@@ -14,7 +14,6 @@
       <img src="https://cdn.quasar.dev/img/avatar.png" class="img" />
     </div>
   </div>
-  <!-- <header class="header"></header> -->
 </template>
 
 <script>

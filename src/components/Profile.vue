@@ -21,7 +21,6 @@
               </div>
             </div>
             <!--  -->
-            <!--  -->
             <div class="input-row">
               <div>
                 <label for="email">ایمیل</label>
@@ -33,15 +32,12 @@
               </div>
             </div>
             <!--  -->
-            <!--  -->
             <div class="desc">
               <label for="description">توضیحات</label>
               <textarea type="text" name="description" />
             </div>
             <!--  -->
-            <!--  -->
             <button type="submit" class="register-btn">ثبت</button>
-            <!-- <input type="button" value="ثبت" /> -->
           </form>
         </div>
       </div>
@@ -61,7 +57,6 @@
               <input type="text" name="newPass" />
             </div>
             <button type="submit" class="change-btn">گذر واژه جدید</button>
-            <!-- <input type="button" value="ثبت" /> -->
           </form>
         </div>
       </div>
@@ -84,11 +79,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/abstract/_mixins.scss";
 .profile {
   height: 100vh;
   direction: rtl;
   width: 100vw;
-  // background-color: red;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -106,7 +101,7 @@ export default {
       }
       span {
         font-size: 1rem;
-        color: #e6e6e6;
+        color: #c4c3c3;
       }
     }
   }
@@ -116,11 +111,16 @@ export default {
     // background-color: yellow;
     display: flex;
     flex-direction: row;
+    @include respond(tab-port) {
+      flex-direction: column;
+    }
     justify-content: center;
     align-items: center;
     .user {
-      // background-color: red;
       width: 60%;
+      @include respond(tab-port) {
+        width: 90%;
+      }
       height: 100%;
       .card {
         width: 90%;
@@ -129,18 +129,15 @@ export default {
         border-radius: 0.5rem;
         border: 1px solid #e6e6e6;
         form {
-          // margin-top: -1rem;
           width: 100%;
           height: 100%;
           display: flex;
           flex-direction: column;
-          // justify-content: space-around;
           align-items: center;
           .input-row {
             width: 90%;
             display: flex;
             flex-direction: row;
-            // justify-content: space-evenly;
             align-items: center;
             div {
               width: 90%;
@@ -160,7 +157,6 @@ export default {
           }
           .desc {
             margin-top: 1rem;
-            // margin-bottom: 2rem;
             width: 100%;
             max-height: 35%;
             margin-right: 6rem;
@@ -205,8 +201,13 @@ export default {
       }
     }
     .change-pass {
-      // background-color: brown;
       width: 30%;
+      @include respond(tab-port) {
+        width: 90%;
+      }
+      @include respond(phone) {
+        width: 90%;
+      }
       height: 100%;
       .left-card {
         width: 90%;
