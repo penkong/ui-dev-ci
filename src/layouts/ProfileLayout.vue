@@ -37,7 +37,7 @@ export default {
 @import "../scss/abstract/_mixins.scss";
 #data-style {
   overflow: hidden;
-  max-height: 92vh;
+  max-height: 93.5vh;
   @include respond(phone) {
     overflow: auto;
     max-height: auto;
