@@ -39,9 +39,7 @@
             :ciName="ciNameFromDataShow"
           />
         </div>
-        <!-- <div v-if="domainName && !ciNameFromDataShow">
-          <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" :key="domainName" />
-        </div>-->
+
         <div
           v-if="domainName && ciNameFromDataShow"
           :key="domainName"

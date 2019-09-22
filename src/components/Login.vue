@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import EventBus from "../helpers/event-bus";
 export default {
   name: "Login",
   data() {
@@ -33,20 +34,34 @@ export default {
       toggler: false
     };
   },
+
   methods: {
     async loginUser() {
       if (this.username && this.password) {
         const confObj = {
           username: this.username,
-          password: this.password,
-          remember: this.toggler
+          password: this.password
         };
-        // const url = "http://192.168.100.181:1234/users/login";
-        // const logUser = await this.axios.post(url, confObj);
-        console.log(confObj, "login config");
+        const logUser = await this.axios.post(
+          `${process.env.auth}/users/login`,
+          confObj
+        );
+        console.log(logUser);
+        const token = logUser.data["x-auth-token"];
+        if (token) {
+          const { username, password } = JSON.parse(logUser.config.data);
+          const passInfoToOtherComps = {
+            username,
+            password,
+            token: token
+          };
+          console.log(passInfoToOtherComps);
+          EventBus.$emit("userLogged", passInfoToOtherComps);
+          this.$router.push({ name: "CiLayout" });
+          this.username = "";
+          this.password = null;
+        }
       }
-      this.username = "";
-      this.password = null;
     },
     rememberMe($event) {
       console.log($event.target.value);

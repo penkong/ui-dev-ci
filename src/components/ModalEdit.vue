@@ -89,18 +89,14 @@ export default {
     },
     async editRow() {
       try {
-        const url = "http://localhost:5000/ci/addrow";
-        // const idForExec = this.options.find(el => el.id === idForEdit).id;
+        const url = `${process.env.ci}/ci/addrow`;
         const confObj = {
           id: parseInt(this.idProp),
           title: this.titleData,
           domainName: this.domainName,
           ciName: this.ciName
         };
-        // console.log(confObj, url);
         const result = await this.axios.post(url, confObj);
-        // const data = result.data;
-        // console.log(result, "this is data");
         if (result.data) {
           this.$refs.openModal.style.display = "none";
         }
