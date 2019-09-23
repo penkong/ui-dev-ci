@@ -182,7 +182,7 @@ export default {
             textarea {
               border: 1px solid #e6e6e6;
               border-radius: 0.5rem;
-              height: 10rem;
+              height: 9rem;
               max-height: 100%;
               min-width: 87%;
               max-width: 87%;
@@ -275,9 +275,7 @@ export default {
             cursor: pointer;
             transition: all 0.4s ease-out;
             outline: none;
-            @include respond(big-desktop) {
-              margin-top: 7.8rem;
-            }
+
             @include respond(tab-port) {
               margin-bottom: 5rem;
             }

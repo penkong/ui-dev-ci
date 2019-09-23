@@ -37,9 +37,9 @@ export default {
 @import "../scss/abstract/_mixins.scss";
 #profile-style {
   overflow: hidden;
-  max-height: 93.5vh;
+  max-height: 93vh;
   @include respond(big-desktop) {
-    max-height: 94vh;
+    max-height: 93vh;
   }
   @include respond(phone) {
     max-height: auto;

@@ -36,20 +36,12 @@ export default {
   overflow: hidden;
   max-height: 92vh;
   @include respond(big-desktop) {
-    max-height: 94vh;
+    max-height: 93vh;
   }
-  @include respond(phone) {
-    overflow: scroll;
-    max-height: fit-content;
-    // height: fit-content; //
-  }
-  @include respond(phone-h) {
-    overflow: hidden;
+  @include respond(tab-port) {
+    overflow: auto;
     max-height: auto;
-  }
-  @include respond(sm-phone-h) {
-    overflow: hidden;
-    max-height: auto;
+    height: auto;
   }
 }
 </style>
