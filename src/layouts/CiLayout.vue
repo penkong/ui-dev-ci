@@ -35,6 +35,9 @@ export default {
 #data-style {
   overflow: hidden;
   max-height: 92vh;
+  @include respond(big-desktop) {
+    max-height: 94vh;
+  }
   @include respond(phone) {
     overflow: auto;
     max-height: auto;

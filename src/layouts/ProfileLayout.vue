@@ -6,9 +6,9 @@
     <div class="col-12">
       <div class="row">
         <div>
-          <SideBar />
+          <SideBar class="sidebar" />
         </div>
-        <q-page-container class="col-11 bg-grey-2" id="data-style">
+        <q-page-container class="col-11 bg-grey-2" id="profile-style">
           <router-view />
         </q-page-container>
       </div>
@@ -35,11 +35,24 @@ export default {
 
 <style lang="scss">
 @import "../scss/abstract/_mixins.scss";
-#data-style {
+#profile-style {
   overflow: hidden;
   max-height: 93.5vh;
+  @include respond(big-desktop) {
+    max-height: 94vh;
+  }
   @include respond(phone) {
-    overflow: auto;
+    max-height: auto;
+    height: auto; //
+  }
+  @include respond(tab-port) {
+    padding: 1rem 0rem;
+    .sidebar {
+      min-height: 140vh;
+    }
+    height: 140vh;
+    // overflow-x: scroll;
+    overflow-y: visible;
     max-height: auto;
     height: auto; //
   }

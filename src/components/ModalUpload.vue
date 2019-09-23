@@ -19,21 +19,12 @@
             class="fit column flex flex-center justify-center"
             style="margin-top: 2rem;"
           >
-            <!-- <input
-              type="file"
-              placeholder=" "
-              class="custom-file-input"
-              name="avatar"
-              accept="image/*"
-            />-->
-
             <input type="file" id="avatar" name="avatar" class="inputfile" />
             <label for="avatar">
               <span>
                 <i class="fas fa-cloud-upload-alt"></i>
               </span>
             </label>
-
             <button
               type="submit"
               class="text-white q-pa-xs"

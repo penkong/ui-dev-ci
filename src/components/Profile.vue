@@ -93,6 +93,9 @@ export default {
     width: 91.7%;
     // background-color: blue;
     div {
+      @include respond(tab-port) {
+        margin-top: 7rem;
+      }
       margin-top: 2.5rem;
       margin-right: 4.2rem;
       p {
@@ -118,13 +121,21 @@ export default {
     align-items: center;
     .user {
       width: 60%;
+      height: 100%;
       @include respond(tab-port) {
         width: 90%;
+        height: auto;
       }
-      height: 100%;
       .card {
         width: 90%;
         height: 90%;
+        @include respond(tab-port) {
+          height: auto;
+          margin-top: 15rem;
+        }
+        @include respond(phone) {
+          margin-top: 17rem;
+        }
         background-color: #f7fafc;
         border-radius: 0.5rem;
         border: 1px solid #e6e6e6;
@@ -188,6 +199,9 @@ export default {
             cursor: pointer;
             transition: all 0.4s ease-out;
             outline: none;
+            @include respond(tab-port) {
+              margin-bottom: 5rem;
+            }
             &:hover {
               background-color: #007ee6;
               transform: scale(1.02);
@@ -204,12 +218,14 @@ export default {
       width: 30%;
       @include respond(tab-port) {
         width: 90%;
+        height: auto;
       }
-      @include respond(phone) {
-        width: 90%;
-      }
+
       height: 100%;
       .left-card {
+        @include respond(tab-port) {
+          height: auto;
+        }
         width: 90%;
         height: 90%;
         background-color: #f7fafc;
@@ -258,6 +274,12 @@ export default {
             cursor: pointer;
             transition: all 0.4s ease-out;
             outline: none;
+            @include respond(big-desktop) {
+              margin-top: 7.8rem;
+            }
+            @include respond(tab-port) {
+              margin-bottom: 5rem;
+            }
             &:hover {
               background-color: #007ee6;
               transform: scale(1.02);
