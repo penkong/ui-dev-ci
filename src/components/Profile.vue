@@ -84,6 +84,7 @@ export default {
   height: 100vh;
   direction: rtl;
   width: 100vw;
+  overflow-y: visible;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

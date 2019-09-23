@@ -24,10 +24,5 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  // @include respond(phone) {
-  //   overflow: auto;
-  //   max-height: auto;
-  //   height: auto; //
-  // }
 }
 </style>

@@ -116,7 +116,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-/////
+@import "../scss/abstract/_mixins.scss";
 .maghaze {
   position: absolute;
   z-index: 100;

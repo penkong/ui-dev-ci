@@ -39,9 +39,17 @@ export default {
     max-height: 94vh;
   }
   @include respond(phone) {
-    overflow: auto;
+    overflow: scroll;
+    max-height: fit-content;
+    // height: fit-content; //
+  }
+  @include respond(phone-h) {
+    overflow: hidden;
     max-height: auto;
-    height: auto; //
+  }
+  @include respond(sm-phone-h) {
+    overflow: hidden;
+    max-height: auto;
   }
 }
 </style>

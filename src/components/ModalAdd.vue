@@ -12,7 +12,7 @@
         <div>
           <form
             @submit.prevent="addRow"
-            class="fit column flex flex-center justify-center"
+            class="fit column flex justify-end"
             style="margin-top: 2rem;"
           >
             <div class="q-mb-lg q-mt-xl" style="text-align: right;">
@@ -130,6 +130,10 @@ export default {
     z-index: 9999;
     position: relative;
     .modal-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
       padding: 0.7rem 1rem;
       background-color: rgb(0, 94, 202);
       color: white;
@@ -141,7 +145,8 @@ export default {
       left: 0;
       h4 {
         text-align: right;
-        margin-left: 9rem;
+        margin-left: 15rem;
+        font-size: 1.5rem;
         // position: absolute;
         // right: 0;
       }
@@ -149,7 +154,7 @@ export default {
         // background-color: inherit;
         color: rgba(0, 73, 156, 0.923);
         position: absolute;
-        top: -0.7rem;
+        top: -0.4rem;
         left: -1rem;
         padding: 0;
         margin: 0;
@@ -178,16 +183,25 @@ export default {
       position: relative;
       margin-top: 3rem;
       input {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0.5rem;
+        width: 18.5rem;
+        @include respond(tab-port) {
+          width: 17.75rem;
+        }
         border: 1px solid rgb(223, 223, 223);
         border-radius: 3px;
       }
       button {
-        margin-top: 3rem;
+        margin-top: 5rem;
+        margin-right: 4rem;
+        width: 18.6rem;
+        @include respond(tab-port) {
+          margin-top: 3rem;
+        }
         color: white;
         border: none;
         background-color: rgba(0, 73, 156, 0.932);
-        padding: 0.7rem 4rem;
+        padding: 0.6rem 4rem;
         border-radius: 0.5rem;
         // width: 6rem;
         // text-align: right;

@@ -98,6 +98,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "../scss/abstract/_mixins.scss";
 .dropdown {
   position: relative;
   display: inline-block;
@@ -197,7 +198,8 @@ export default {
       left: 0;
       h4 {
         text-align: right;
-        margin-left: 9rem;
+        margin-left: 15rem;
+        font-size: 1.5rem;
         // position: absolute;
         // right: 0;
       }
@@ -205,7 +207,7 @@ export default {
         // background-color: inherit;
         color: rgba(0, 73, 156, 0.923);
         position: absolute;
-        top: -0.7rem;
+        top: -0.3rem;
         left: -1rem;
         padding: 0;
         margin: 0;
@@ -275,11 +277,16 @@ export default {
         // background-color: red;
       }
       button {
-        margin-top: 3rem;
+        margin-top: 5rem;
+        width: 20rem;
+        font-size: 1.5rem;
+        @include respond(tab-port) {
+          margin-top: 3rem;
+        }
         color: white;
         border: none;
         background-color: rgba(0, 73, 156, 0.932);
-        padding: 0.7rem 4rem;
+        padding: 0.4rem 4rem;
         border-radius: 0.5rem;
         // width: 6rem;
         // text-align: right;
