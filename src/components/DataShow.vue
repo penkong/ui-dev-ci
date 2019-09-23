@@ -94,14 +94,11 @@ export default {
       this.ciNameFromDataShow = val;
     },
     onChange($event) {
-      // this.domainName = $event.target.value;
       if ($event) {
-        // this.domainName = null;
         this.$set(this, "domainName", $event);
       }
     },
     ciNameFromSearch(val) {
-      console.log(val, "from dataShow");
       this.ciNameFromDataShow = val.table_name;
     }
   },

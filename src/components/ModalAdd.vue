@@ -64,7 +64,7 @@ export default {
       this.$refs.openModal.style.display = "none";
     },
     async addRow() {
-      const url = "http://localhost:5000/ci/addrow";
+      const url = `${process.env.ciServer}/ci/addrow`;
       const dataForTable = { id: parseInt(this.id), title: this.title };
       const confObj = {
         id: parseInt(this.id),

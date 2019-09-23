@@ -76,9 +76,8 @@ export default {
   },
   methods: {
     async loadDataTable(name, domName) {
-      // console.log(name, "from load data table");
       try {
-        const url = "http://localhost:5000/ci/get";
+        const url = `${process.env.ciServer}/ci/get`;
         const confObj = {
           domainName: domName,
           ciName: name.toString()

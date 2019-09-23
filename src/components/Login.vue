@@ -25,6 +25,7 @@
 
 <script>
 import EventBus from "../helpers/event-bus";
+import VueJwtDecode from "vue-jwt-decode";
 export default {
   name: "Login",
   data() {
@@ -37,30 +38,34 @@ export default {
 
   methods: {
     async loginUser() {
-      if (this.username && this.password) {
-        const confObj = {
-          username: this.username,
-          password: this.password
-        };
-        const logUser = await this.axios.post(
-          `${process.env.auth}/users/login`,
-          confObj
-        );
-        console.log(logUser);
-        const token = logUser.data["x-auth-token"];
-        if (token) {
-          const { username, password } = JSON.parse(logUser.config.data);
-          const passInfoToOtherComps = {
-            username,
-            password,
-            token: token
-          };
-          console.log(passInfoToOtherComps);
-          EventBus.$emit("userLogged", passInfoToOtherComps);
-          this.$router.push({ name: "CiLayout" });
-          this.username = "";
-          this.password = null;
+      try {
+        if (this.username && this.password) {
+          const logUser = await this.axios.post(
+            `${process.env.authServer}/users/login`,
+            {
+              username: this.username,
+              password: this.password
+            }
+          );
+          console.log(logUser);
+          const token = logUser.data["x-auth-token"];
+          const { NidUser, firstname, lastname } = VueJwtDecode.decode(token);
+          if (token) {
+            const passInfoToOtherComps = {
+              userId: NidUser,
+              username: firstname,
+              lastname: lastname,
+              token: token
+            };
+            console.log(passInfoToOtherComps);
+            EventBus.$emit("userInfo", passInfoToOtherComps);
+            this.$router.push({ path: "/ci" });
+            this.username = "";
+            this.password = null;
+          }
         }
+      } catch (error) {
+        console.log(error);
       }
     },
     rememberMe($event) {

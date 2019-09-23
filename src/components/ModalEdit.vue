@@ -89,7 +89,7 @@ export default {
     },
     async editRow() {
       try {
-        const url = `${process.env.ci}/ci/addrow`;
+        const url = `${process.env.ciServer}/ci/addrow`;
         const confObj = {
           id: parseInt(this.idProp),
           title: this.titleData,

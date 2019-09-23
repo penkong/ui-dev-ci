@@ -8,7 +8,7 @@
         </button>
         <div class="dropdown-content">
           <router-link to="/">تغییر تصویر</router-link>
-          <router-link to="/">خروج</router-link>
+          <router-link to="/logout">خروج</router-link>
         </div>
       </div>
       <img src="https://cdn.quasar.dev/img/avatar.png" class="img" />
@@ -60,18 +60,19 @@ export default {
         border: none;
         outline: none;
         color: rgba(54, 54, 54, 0.603);
-        padding: 0.5rem 4rem;
+        padding: 0.5rem 2.7rem;
         margin-left: 2rem;
         background-color: white;
         font-family: "Shabnam-FD";
-        margin: 0; /* Important for vertical align on mobile phones */
+        /* Important for vertical align on mobile phones */
+        margin: 0;
       }
       &:hover .dropdown-content {
         display: block;
       }
       .dropdown-content {
         margin-left: 2rem;
-        width: 14rem;
+        width: 10rem;
         display: none;
         position: absolute;
         background-color: #f9f9f9;
@@ -98,7 +99,7 @@ export default {
       margin-top: 0.25rem;
       margin-bottom: 0.25rem;
       border-radius: 50%;
-      margin-left: 2rem;
+      margin-left: 0.3rem;
     }
     & a:hover,
     .dropdown:hover .dropbtn {

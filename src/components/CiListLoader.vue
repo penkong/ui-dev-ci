@@ -53,13 +53,12 @@ export default {
     },
     async loadCiList() {
       try {
-        const url = "http://localhost:5000/ci/getcilist";
+        const url = `${process.env.ciServer}/ci/getcilist`;
         const result = await this.axios.post(url, {
           domainName: this.domainName
         });
         const data = result.data;
         if (data) {
-          // console.log(data);
           this.options = data;
         }
         return this.options;
