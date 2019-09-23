@@ -71,7 +71,6 @@ export default {
         this.options.push(payload);
       }
     });
-
     this.loadDataTable(this.ciName, this.domainName);
   },
   methods: {

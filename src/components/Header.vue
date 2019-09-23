@@ -7,7 +7,8 @@
           ناحیه کاربری
         </button>
         <div class="dropdown-content">
-          <router-link to="/">تغییر تصویر</router-link>
+          <!-- <router-link to="/">تغییر تصویر</router-link> -->
+
           <router-link to="/logout">خروج</router-link>
         </div>
       </div>
@@ -17,15 +18,23 @@
 </template>
 
 <script>
+import EventBus from "../helpers/event-bus";
+import ModuleName from "../components/ModalUpload";
 export default {
   name: "Header",
   data() {
     return {
-      model: null,
-      options: ["تغییر تصویر", "خروج"],
-      dense: true,
-      denseOpts: true
+      userInfos: []
     };
+  },
+  mounted() {
+    EventBus.$on("userInfo", payload => {
+      console.log(payload);
+      this.userInfos.push({
+        username: payload.username,
+        lastname: payload.lastname
+      });
+    });
   },
   methods: {
     onItemClick() {

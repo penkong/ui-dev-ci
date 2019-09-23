@@ -47,7 +47,6 @@ export default {
               password: this.password
             }
           );
-          console.log(logUser);
           const token = logUser.data["x-auth-token"];
           const { NidUser, firstname, lastname } = VueJwtDecode.decode(token);
           if (token) {
@@ -57,7 +56,6 @@ export default {
               lastname: lastname,
               token: token
             };
-            console.log(passInfoToOtherComps);
             EventBus.$emit("userInfo", passInfoToOtherComps);
             this.$router.push({ path: "/ci" });
             this.username = "";

@@ -1,36 +1,34 @@
 <template>
   <span>
-    <button id="myBtn" class="button" @click="onOpenModal">افزودن</button>
+    <button
+      id="myBtn"
+      style="border: none; background-color: inherit;outline: none; cursor: pointer;"
+      @click="onOpenModal"
+    >
+      <i class="fas fa-pen-square"></i>
+      تغییر تصویر
+    </button>
     <!-- The Modal -->
     <div id="myModal" class="modal" ref="openModal">
       <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
-          <h4 style="text-align: center;">افزودن اطلاعات</h4>
+          <h4 style="text-align: center;">ویرایش عنوان</h4>
           <span class="close" @click="closeModal" ref="closeModal">&times;</span>
         </div>
         <div>
           <form
-            @submit.prevent="addRow"
+            @submit.prevent="editRow"
             class="fit column flex flex-center justify-center"
             style="margin-top: 2rem;"
           >
-            <div class="q-mb-lg q-mt-xl" style="text-align: right;">
-              <label for="id" class="text-black q-ml-lg" style="font-size: 1rem;">شماره</label>
-              <input
-                v-model="id"
-                type="number"
-                id="id"
-                name="id"
-                ref="ids"
-                @keydown.shift.tab.prevent
-              />
-            </div>
-            <div class="q-mb-xs q-mt-md">
-              <label for="title" class="text-black q-ml-lg" style="font-size: 1rem;">عنوان</label>
-              <input v-model="title" ref="titleForEdit" type="text" id="title" name="title" />
-            </div>
-            <button type="submit">افزودن</button>
+            <button
+              type="submit"
+              class="text-white q-pa-xs"
+              style="border: none;
+                background-color: rgba(0, 73, 156, 0.932);
+                padding: 0.7rem 6rem;border-radius: 0.5rem;"
+            >بارگذاری</button>
           </form>
         </div>
       </div>
@@ -39,22 +37,30 @@
 </template>
 
 <script>
-import EventBus from "../helpers/event-bus.js";
+// import EventBus from "../helpers/event-bus.js";
 export default {
-  name: "ModalAdd",
+  name: "ModalUpload",
   data() {
     return {
-      title: "",
-      id: null
+      titleData: ""
     };
   },
   props: {
+    idProp: {
+      type: Number
+    },
     domainName: {
+      type: String
+    },
+    title: {
       type: String
     },
     ciName: {
       type: String
     }
+  },
+  mounted() {
+    this.titleData = this.title;
   },
   methods: {
     onOpenModal() {
@@ -63,23 +69,24 @@ export default {
     closeModal() {
       this.$refs.openModal.style.display = "none";
     },
-    async addRow() {
-      const url = `${process.env.ciServer}/ci/addrow`;
-      const dataForTable = { id: parseInt(this.id), title: this.title };
-      const confObj = {
-        id: parseInt(this.id),
-        title: this.title,
-        domainName: this.domainName,
-        ciName: this.ciName
-      };
+    async editRow() {
       try {
+        const url = `${process.env.ciServer}/ci/addrow`;
+        const confObj = {
+          id: parseInt(this.idProp),
+          title: this.titleData,
+          domainName: this.domainName,
+          ciName: this.ciName
+        };
         const result = await this.axios.post(url, confObj);
-        if (result) {
-          EventBus.$emit("addedRow", dataForTable);
+        if (result.data) {
           this.$refs.openModal.style.display = "none";
-          this.id = null;
-          this.title = "";
         }
+        const dataForTable = {
+          id: parseInt(this.idProp),
+          title: this.titleData
+        };
+        this.$emit("editedRow", dataForTable);
       } catch (error) {
         console.log(error);
       }
@@ -88,7 +95,53 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../scss/abstract/_mixins.scss";
+.dropdown {
+  position: relative;
+  display: inline-block;
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 7rem;
+    text-align: right;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 3px;
+    /* Links inside the dropdown */
+  }
+  .dropdown-content span {
+    border-radius: 3px;
+    color: rgba(0, 73, 156, 0.932);
+    padding: 0.6rem 1rem;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    /* Change color of dropdown links on hover */
+    &:hover {
+      // background-color: #192442;
+      color: rgb(255, 255, 255);
+      i {
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+    i {
+      margin-left: 1rem;
+      color: rgba(0, 73, 156, 0.923);
+    }
+  }
+  /* Show the dropdown menu on hover */
+  &:hover .dropdown-content {
+    display: block;
+  }
+}
+
+/* The Modal (background) */
+#myBtn {
+  &:hover {
+    color: white;
+  }
+}
 
 .button {
   display: block;
