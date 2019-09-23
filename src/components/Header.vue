@@ -8,7 +8,7 @@
         </button>
         <div class="dropdown-content">
           <!-- <router-link to="/">تغییر تصویر</router-link> -->
-
+          <ModalUpload class="upload" />
           <router-link to="/logout">خروج</router-link>
         </div>
       </div>
@@ -19,9 +19,12 @@
 
 <script>
 import EventBus from "../helpers/event-bus";
-import ModuleName from "../components/ModalUpload";
+import ModalUpload from "../components/ModalUpload";
 export default {
   name: "Header",
+  components: {
+    ModalUpload
+  },
   data() {
     return {
       userInfos: []
@@ -87,7 +90,8 @@ export default {
         background-color: #f9f9f9;
         min-width: 7.9rem;
         z-index: 5;
-        a {
+        a,
+        .upload {
           font-family: "Shabnam-FD";
           direction: rtl;
           float: none;
@@ -97,7 +101,7 @@ export default {
           display: block;
           text-align: right;
         }
-        & a:hover {
+        & a:hover .upload:hover {
           background-color: rgb(255, 242, 218);
         }
       }

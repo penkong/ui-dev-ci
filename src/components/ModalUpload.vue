@@ -4,10 +4,7 @@
       id="myBtn"
       style="border: none; background-color: inherit;outline: none; cursor: pointer;"
       @click="onOpenModal"
-    >
-      <i class="fas fa-pen-square"></i>
-      تغییر تصویر
-    </button>
+    >تغییر تصویر</button>
     <!-- The Modal -->
     <div id="myModal" class="modal" ref="openModal">
       <!-- Modal content -->
@@ -22,6 +19,21 @@
             class="fit column flex flex-center justify-center"
             style="margin-top: 2rem;"
           >
+            <!-- <input
+              type="file"
+              placeholder=" "
+              class="custom-file-input"
+              name="avatar"
+              accept="image/*"
+            />-->
+
+            <input type="file" id="avatar" name="avatar" class="inputfile" />
+            <label for="avatar">
+              <span>
+                <i class="fas fa-cloud-upload-alt"></i>
+              </span>
+            </label>
+
             <button
               type="submit"
               class="text-white q-pa-xs"
@@ -230,10 +242,46 @@ export default {
     form {
       position: relative;
       margin-top: 3rem;
-      input {
-        padding: 0.5rem 1rem;
-        border: 1px solid rgb(223, 223, 223);
-        border-radius: 3px;
+
+      .inputfile {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+      }
+      .inputfile + label {
+        height: 10rem;
+        width: 20rem;
+        margin-top: 3rem;
+        font-size: 1.25em;
+        font-weight: 700;
+        // background-color: rgb(228, 228, 228);
+        display: inline-block;
+        border-radius: 6px;
+        border: 3px dashed rgb(223, 223, 223);
+
+        text-align: center;
+        outline: none;
+        cursor: pointer;
+        span {
+          i {
+            color: rgb(196, 196, 196);
+            font-size: 5rem;
+            margin-top: 1rem;
+          }
+        }
+      }
+      .inputfile > i {
+        color: black;
+        width: 5rem;
+        height: 5rem;
+      }
+      .inputfile:focus + label,
+      .inputfile + label:hover {
+        color: red;
+        // background-color: red;
       }
       button {
         margin-top: 3rem;
