@@ -8,7 +8,7 @@
         </button>
         <div class="dropdown-content">
           <ModalUpload class="upload" />
-          <router-link to="/logout">خروج</router-link>
+          <a @click="logout">خروج</a>
         </div>
       </div>
       <img src="https://cdn.quasar.dev/img/avatar.png" class="img" />
@@ -26,11 +26,20 @@ export default {
   },
   data() {
     return {
-      userInfos: [],
+      userInfos: null,
       userIn: "ناحیه کاربری"
     };
   },
   methods: {
+    logout() {
+      this.$store.dispatch("AUTH_LOGOUT").then(() => {
+        this.$router.push("/login");
+      });
+    },
+    listenInfos() {
+      // console.log(data);
+      this.$store;
+    },
     onItemClick() {
       console.log("Clicked on an Item");
     },

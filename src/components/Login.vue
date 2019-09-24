@@ -1,9 +1,9 @@
 <template>
   <div class="login">
     <div class="img-container">
-      <img src="statics/logo.png" alt='logo' />
+      <img src="statics/logo.png" alt="logo" />
     </div>
-    <form @submit.prevent="loginUser">
+    <form @submit.prevent="login">
       <div class="first-input">
         <input v-model="username" type="text" name="email" placeholder="نام کاربری" />
         <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -24,8 +24,10 @@
 </template>
 
 <script>
-import EventBus from "../helpers/event-bus";
 import VueJwtDecode from "vue-jwt-decode";
+import EventBus from "../helpers/event-bus";
+import { AUTH_REQUEST } from "../store/actions/auth";
+import { mapGetters, mapState } from "vuex";
 export default {
   name: "Login",
   data() {
@@ -35,8 +37,18 @@ export default {
       toggler: false
     };
   },
-
   methods: {
+    login() {
+      const { username, password } = this;
+      this.$store
+        .dispatch(AUTH_REQUEST, { username: username, password: password })
+        .then(() => {
+          this.$router.push({ path: "/ci" });
+          username = "";
+          password = null;
+        })
+        .catch(err => console.log(err));
+    },
     async loginUser() {
       try {
         if (this.username && this.password) {
@@ -56,10 +68,11 @@ export default {
               lastname: lastname,
               token: token
             };
-            EventBus.$emit("userInfo", passInfoToOtherComps);
+            // EventBus.$emit("userInfo", passInfoToOtherComps);
             this.$router.push({
               path: "/ci"
             });
+            this.$root.$emit("userInfo", passInfoToOtherComps);
             this.username = "";
             this.password = null;
           }
