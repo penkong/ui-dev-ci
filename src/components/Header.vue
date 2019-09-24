@@ -4,10 +4,9 @@
       <div class="dropdown">
         <button class="dropbtn">
           <i class="fa fa-caret-down"></i>
-          ناحیه کاربری
+          {{ userIn }}
         </button>
         <div class="dropdown-content">
-          <!-- <router-link to="/">تغییر تصویر</router-link> -->
           <ModalUpload class="upload" />
           <router-link to="/logout">خروج</router-link>
         </div>
@@ -27,17 +26,9 @@ export default {
   },
   data() {
     return {
-      userInfos: []
+      userInfos: [],
+      userIn: "ناحیه کاربری"
     };
-  },
-  mounted() {
-    EventBus.$on("userInfo", payload => {
-      console.log(payload);
-      this.userInfos.push({
-        username: payload.username,
-        lastname: payload.lastname
-      });
-    });
   },
   methods: {
     onItemClick() {

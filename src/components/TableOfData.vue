@@ -91,7 +91,6 @@ export default {
         console.log(error);
       }
     },
-
     async deleteRow(idForDelete) {
       const url = "http://localhost:5000/ci/delete";
       const idForExec = this.options.find(el => el.id === idForDelete).id;

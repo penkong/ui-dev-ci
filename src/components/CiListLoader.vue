@@ -26,7 +26,6 @@
 
 
 <script>
-// import EventBus from "../helpers/event-bus";
 export default {
   name: "CiListLoader",
   props: {
@@ -66,9 +65,7 @@ export default {
         console.log(error);
       }
     },
-
     ciNameCatch(option) {
-      // console.log(option, "from ci list loader");
       this.$emit("ciNameCatch", option.table_name);
     }
   }

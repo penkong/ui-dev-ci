@@ -66,6 +66,7 @@
 </template>
 
 <script>
+// import EventBus from "../helpers/event-bus";
 import CiListLoader from "./CiListLoader";
 import TableOfData from "./TableOfData";
 import ModalAdd from "./ModalAdd";
@@ -160,16 +161,5 @@ export default {
       }
     }
   }
-  /* .row-sanad {
-    .sanad {
-      margin-right: 1.9rem;
-      margin-top: 1.7rem;
-    }
-
-    span {
-      color: #c7c6c6;
-      font-size: 0.65rem;
-    }
-  } */
 }
 </style>

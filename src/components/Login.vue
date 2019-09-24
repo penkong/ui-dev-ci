@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="img-container">
-      <img src="statics/logo.png" alt />
+      <img src="statics/logo.png" alt='logo' />
     </div>
     <form @submit.prevent="loginUser">
       <div class="first-input">
@@ -47,7 +47,7 @@ export default {
               password: this.password
             }
           );
-          const token = logUser.data["x-auth-token"];
+          const token = logUser.data["token"];
           const { NidUser, firstname, lastname } = VueJwtDecode.decode(token);
           if (token) {
             const passInfoToOtherComps = {
@@ -57,7 +57,9 @@ export default {
               token: token
             };
             EventBus.$emit("userInfo", passInfoToOtherComps);
-            this.$router.push({ path: "/ci" });
+            this.$router.push({
+              path: "/ci"
+            });
             this.username = "";
             this.password = null;
           }

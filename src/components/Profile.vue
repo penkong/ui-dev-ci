@@ -20,7 +20,6 @@
                 <input type="text" name="lastName" />
               </div>
             </div>
-            <!--  -->
             <div class="input-row">
               <div>
                 <label for="email">ایمیل</label>
@@ -31,12 +30,10 @@
                 <input type="text" name="phone" />
               </div>
             </div>
-            <!--  -->
             <div class="desc">
               <label for="description">توضیحات</label>
               <textarea type="text" name="description" />
             </div>
-            <!--  -->
             <button type="submit" class="register-btn">ثبت</button>
           </form>
         </div>
