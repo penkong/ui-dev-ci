@@ -11,19 +11,23 @@
         <i class="fas fa-user-cog"></i>
       </router-link>
       <router-link to="/" class="gutters">
-        <i class="fas fa-sign-out-alt"></i>
+        <i class="fas fa-sign-out-alt" @click="logout"></i>
       </router-link>
     </nav>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "SideBar",
   data() {
     return {
       drawerRight: false
     };
+  },
+  methods: {
+    ...mapActions("auth", ["logout"])
   }
 };
 </script>

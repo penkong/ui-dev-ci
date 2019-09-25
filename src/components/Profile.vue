@@ -109,7 +109,6 @@ export default {
   .profile-data {
     width: 91.7%;
     height: calc(100% - 3rem);
-    // background-color: yellow;
     display: flex;
     flex-direction: row;
     @include respond(tab-port) {
@@ -230,24 +229,18 @@ export default {
         border-radius: 0.5rem;
         border: 1px solid #e6e6e6;
         form {
-          // margin-top: -1rem;
           height: 100%;
           width: 100%;
           display: flex;
           flex-direction: column;
-          // justify-content: space-around;
           align-items: center;
           margin-top: 1rem;
           margin-right: 1rem;
           div {
-            // margin-bottom: -1rem;
             width: 90%;
-            // margin-right: 6rem;
             display: flex;
             flex-direction: column;
             margin-bottom: 2rem;
-            // align-items: flex-start;
-            // justify-content: flex-start;
             label {
               margin-bottom: 1rem;
               display: block;

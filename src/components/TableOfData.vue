@@ -153,7 +153,6 @@ export default {
       #ffffff 66%,
       #ffffff 100%
     );
-    // border-bottom: 2px solid #ffffff;
     border: none;
   }
   thead th {
@@ -200,10 +199,6 @@ export default {
     text-align: center;
     margin: 0 auto;
     transition: all 0.3s ease;
-    //
-    // background-color: #4caf50;
-    // color: white;
-    // padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;

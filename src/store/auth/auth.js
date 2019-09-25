@@ -1,19 +1,19 @@
+//
+import axios from 'axios';
+import { Base64 } from 'js-base64';
+
 // comp -> dispatch -> actions -> commit-> mutations ->
 // -> state change -> save store -> getters get
-
-import axios from 'axios';
-import VueJwtDecode from "vue-jwt-decode";
-
-
+//------------------------------------ states -----------------------------------------
 //states
 const state = {
     username: '',
     lastname: '',
-    token: localStorage.getItem('token') || '',
+    token: '',
     NidUser: null,
 }
 
-
+//--------------------------------- mutations --------------------------------------
 // mutate state and dispatch changes state changers
 const mutations = {
     authUser(state, userData) {
@@ -39,18 +39,26 @@ const mutations = {
     }
 }
 
-
+//--------------------------------- actions ------------------------------------------
 // actions contact real world apis pre process before sync changes to state
-// context .commit
+// context.commit or state
 const actions = {
+    fetchUser({ state }) {
+        if (!state.token) {
+            this.$router.push('/');
+        }
+    },
     login({ commit }, authData) {
         axios
             .post(`${process.env.authServer}/users/login`, authData)
             .then(res => {
-                console.log(res)
                 const { token } = res.data;
-                const { NidUser, firstname, lastname } = VueJwtDecode.decode(token);
-                localStorage.setItem('token', token)
+                const splitted = token.split('.');
+                const {
+                    NidUser,
+                    firstname,
+                    lastname
+                } = JSON.parse(Base64.decode(splitted[1]));
                 commit('authUser', {
                     token,
                     NidUser,
@@ -59,7 +67,7 @@ const actions = {
                 });
                 this.$router.push('/ci');
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
     },
     logout({ commit }) {
         commit('clearAuthData');
@@ -69,13 +77,19 @@ const actions = {
 }
 
 
-//--------------------------------------------------------------------------
+//----------------------------- getters --------------------------------
 // manipulate state for view ,
 const getters = {
-
+    userForHeader: (state) => {
+        const { firstname, lastname } = state;
+        return `${firstname} ${lastname}`;
+    },
+    isAuthenticated: (state) => state.token !== null
 };
 
 
+
+//---------------------------- export module -------------------------------
 export default {
     namespaced: true,
     getters,

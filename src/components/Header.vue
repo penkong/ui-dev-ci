@@ -4,7 +4,7 @@
       <div class="dropdown">
         <button class="dropbtn">
           <i class="fa fa-caret-down"></i>
-          {{ userIn }}
+          {{ userForHeader }}
         </button>
         <div class="dropdown-content">
           <ModalUpload class="upload" />
@@ -18,6 +18,7 @@
 
 <script>
 import EventBus from "../helpers/event-bus";
+import { mapActions, mapGetters } from "vuex";
 import ModalUpload from "../components/ModalUpload";
 export default {
   name: "Header",
@@ -30,22 +31,11 @@ export default {
       userIn: "ناحیه کاربری"
     };
   },
+  computed: {
+    ...mapGetters("auth", ["userForHeader"])
+  },
   methods: {
-    logout() {
-      this.$store.dispatch("AUTH_LOGOUT").then(() => {
-        this.$router.push("/login");
-      });
-    },
-    listenInfos() {
-      // console.log(data);
-      this.$store;
-    },
-    onItemClick() {
-      console.log("Clicked on an Item");
-    },
-    onLogOut() {
-      console.log("on log out");
-    }
+    ...mapActions("auth", ["logout"])
   }
 };
 </script>

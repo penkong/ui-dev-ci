@@ -19,6 +19,7 @@
 <script>
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
+import { mapActions } from "vuex";
 export default {
   name: "ProfileLayout",
   components: {
@@ -29,6 +30,12 @@ export default {
     return {
       leftDrawer: true
     };
+  },
+  created() {
+    this.fetchUser();
+  },
+  methods: {
+    ...mapActions("auth", ["fetchUser"])
   }
 };
 </script>

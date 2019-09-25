@@ -55,7 +55,6 @@
 </template>
 
 <script>
-// import EventBus from "../helpers/event-bus.js";
 export default {
   name: "ModalEdit",
   data() {
@@ -215,11 +214,8 @@ export default {
         text-align: right;
         margin-left: 15rem;
         font-size: 1.5rem;
-        // position: absolute;
-        // right: 0;
       }
       span {
-        // background-color: inherit;
         color: rgba(0, 73, 156, 0.923);
         position: absolute;
         top: -0.4rem;
@@ -238,7 +234,6 @@ export default {
         float: right;
         font-size: 2rem;
         font-weight: bold;
-        // background-color: #fff;
       }
 
       .close:hover,
@@ -274,8 +269,6 @@ export default {
         background-color: rgba(0, 73, 156, 0.932);
         padding: 0.4rem 4rem;
         border-radius: 0.5rem;
-        // width: 6rem;
-        // text-align: right;
         font-size: 1.1rem;
         cursor: pointer;
         transition: all 0.4s ease-in-out;

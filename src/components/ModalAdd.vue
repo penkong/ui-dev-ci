@@ -170,7 +170,6 @@ export default {
         float: right;
         font-size: 2rem;
         font-weight: bold;
-        // background-color: #fff;
       }
 
       .close:hover,
@@ -203,8 +202,6 @@ export default {
         background-color: rgba(0, 73, 156, 0.932);
         padding: 0.6rem 4rem;
         border-radius: 0.5rem;
-        // width: 6rem;
-        // text-align: right;
         font-size: 1.4rem;
         cursor: pointer;
         transition: all 0.4s ease-in-out;

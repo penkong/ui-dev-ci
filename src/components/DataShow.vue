@@ -1,14 +1,11 @@
 <template>
   <div class="data-show">
     <div class="column justify-around">
-      <!--  -->
       <div class="col-1 full-width row no-wrap justify-between q-mx-xl items-center content-around">
-        <!--  -->
         <div class="column q-pa-1 col-3 offset-1" style="margin-right: 2rem;">
           <div class="col text-h5">سیستم مدیریت اپلیکیشن</div>
           <div class="col text-subtitle2 q-pt-md text-grey-6">شامل 15 اپلیکیشن</div>
         </div>
-        <!--  -->
         <div class="application">
           <label for="application">اپلیکیشن</label>
           <select
@@ -24,7 +21,6 @@
           </select>
         </div>
       </div>
-      <!--  -->
       <div
         v-if="domainName && !ciNameFromDataShow"
         class="col-10 row justify-around q-mt-sm q-gutter-y-xs"
@@ -39,7 +35,6 @@
             :ciName="ciNameFromDataShow"
           />
         </div>
-
         <div
           v-if="domainName && ciNameFromDataShow"
           :key="domainName"
@@ -51,7 +46,6 @@
             @ciNameFromSearch="ciNameFromSearch"
           />
         </div>
-        <!--  -->
         <div v-if="ciNameFromDataShow" class="col-sm-8 col-xs-10 left-table">
           <TableOfData
             :domainName="domainName"
@@ -60,17 +54,14 @@
           />
         </div>
       </div>
-      <!--  -->
     </div>
   </div>
 </template>
 
 <script>
-// import EventBus from "../helpers/event-bus";
 import CiListLoader from "./CiListLoader";
 import TableOfData from "./TableOfData";
 import ModalAdd from "./ModalAdd";
-
 export default {
   name: "DataShow",
   components: {
@@ -85,12 +76,6 @@ export default {
     };
   },
   methods: {
-    onItemClick() {
-      console.log("Clicked on an Item");
-    },
-    onLogOut() {
-      console.log("on log out");
-    },
     ciNameCatch(val) {
       this.ciNameFromDataShow = val;
     },

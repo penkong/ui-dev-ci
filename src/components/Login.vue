@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import VueJwtDecode from "vue-jwt-decode";
 import EventBus from "../helpers/event-bus";
 import { mapActions } from "vuex";
 export default {
@@ -40,38 +39,6 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["login"]),
-    async loginUser() {
-      try {
-        if (this.username && this.password) {
-          const logUser = await this.axios.post(
-            `${process.env.authServer}/users/login`,
-            {
-              username: this.username,
-              password: this.password
-            }
-          );
-          const token = logUser.data["token"];
-          const { NidUser, firstname, lastname } = VueJwtDecode.decode(token);
-          if (token) {
-            const passInfoToOtherComps = {
-              userId: NidUser,
-              username: firstname,
-              lastname: lastname,
-              token: token
-            };
-            // EventBus.$emit("userInfo", passInfoToOtherComps);
-            this.$router.push({
-              path: "/ci"
-            });
-            this.$root.$emit("userInfo", passInfoToOtherComps);
-            this.username = "";
-            this.password = null;
-          }
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    },
     rememberMe($event) {
       console.log($event.target.value);
       if ($event.target.value === "on") {
@@ -109,7 +76,6 @@ export default {
     text-align: center;
     height: 8rem;
     img {
-      // margin-top: 2rem;
       width: 90%;
     }
     @include respond(phone) {

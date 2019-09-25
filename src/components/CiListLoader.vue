@@ -164,7 +164,6 @@ export default {
         #ffffff 66%,
         #ffffff 100%
       );
-      // border-bottom: 2px solid #ffffff;
       border: none;
     }
     thead th {

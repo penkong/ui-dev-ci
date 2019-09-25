@@ -40,7 +40,6 @@
 </template>
 
 <script>
-// import EventBus from "../helpers/event-bus.js";
 export default {
   name: "ModalUpload",
   data() {
@@ -123,7 +122,6 @@ export default {
     cursor: pointer;
     /* Change color of dropdown links on hover */
     &:hover {
-      // background-color: #192442;
       color: rgb(255, 255, 255);
       i {
         color: rgba(255, 255, 255, 1);
@@ -140,7 +138,6 @@ export default {
   }
 }
 
-/* The Modal (background) */
 #myBtn {
   &:hover {
     color: white;
@@ -200,18 +197,14 @@ export default {
         text-align: right;
         margin-left: 15rem;
         font-size: 1.5rem;
-        // position: absolute;
-        // right: 0;
       }
       span {
-        // background-color: inherit;
         color: rgba(0, 73, 156, 0.923);
         position: absolute;
         top: -0.3rem;
         left: -1rem;
         padding: 0;
         margin: 0;
-        /* The Close Button */
       }
       .close {
         color: #ffffff;
@@ -223,7 +216,6 @@ export default {
         float: right;
         font-size: 2rem;
         font-weight: bold;
-        // background-color: #fff;
       }
 
       .close:hover,
@@ -250,11 +242,9 @@ export default {
         margin-top: 3rem;
         font-size: 1.25em;
         font-weight: 700;
-        // background-color: rgb(228, 228, 228);
         display: inline-block;
         border-radius: 6px;
         border: 3px dashed rgb(223, 223, 223);
-
         text-align: center;
         outline: none;
         cursor: pointer;
@@ -274,7 +264,6 @@ export default {
       .inputfile:focus + label,
       .inputfile + label:hover {
         color: red;
-        // background-color: red;
       }
       button {
         margin-top: 5rem;
@@ -288,8 +277,6 @@ export default {
         background-color: rgba(0, 73, 156, 0.932);
         padding: 0.4rem 4rem;
         border-radius: 0.5rem;
-        // width: 6rem;
-        // text-align: right;
         font-size: 1.4rem;
         cursor: pointer;
         transition: all 0.4s ease-in-out;

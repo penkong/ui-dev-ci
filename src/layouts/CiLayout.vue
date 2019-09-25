@@ -19,6 +19,7 @@
 <script>
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
+import { mapActions } from "vuex";
 export default {
   components: {
     Header,
@@ -26,6 +27,12 @@ export default {
   },
   data() {
     return {};
+  },
+  created() {
+    this.fetchUser();
+  },
+  methods: {
+    ...mapActions("auth", ["fetchUser"])
   }
 };
 </script>
