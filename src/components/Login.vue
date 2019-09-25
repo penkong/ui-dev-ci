@@ -3,13 +3,13 @@
     <div class="img-container">
       <img src="statics/logo.png" alt="logo" />
     </div>
-    <form @submit.prevent="login">
+    <form @submit.prevent="login(model)">
       <div class="first-input">
-        <input v-model="username" type="text" name="email" placeholder="نام کاربری" />
+        <input v-model="model.username" type="text" name="email" placeholder="نام کاربری" />
         <i class="fa fa-envelope" aria-hidden="true"></i>
       </div>
       <div>
-        <input v-model="password" type="password" name="password" placeholder="کلمه عبور" />
+        <input v-model="model.password" type="password" name="password" placeholder="کلمه عبور" />
         <i class="fa fa-lock" aria-hidden="true"></i>
       </div>
       <p>
@@ -26,29 +26,20 @@
 <script>
 import VueJwtDecode from "vue-jwt-decode";
 import EventBus from "../helpers/event-bus";
-import { AUTH_REQUEST } from "../store/actions/auth";
-import { mapGetters, mapState } from "vuex";
+import { mapActions } from "vuex";
 export default {
   name: "Login",
   data() {
     return {
-      username: "",
-      password: null,
+      model: {
+        username: "",
+        password: null
+      },
       toggler: false
     };
   },
   methods: {
-    login() {
-      const { username, password } = this;
-      this.$store
-        .dispatch(AUTH_REQUEST, { username: username, password: password })
-        .then(() => {
-          this.$router.push({ path: "/ci" });
-          username = "";
-          password = null;
-        })
-        .catch(err => console.log(err));
-    },
+    ...mapActions("auth", ["login"]),
     async loginUser() {
       try {
         if (this.username && this.password) {
