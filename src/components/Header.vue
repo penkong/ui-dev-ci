@@ -2,7 +2,7 @@
   <div class="header">
     <div class="navbar">
       <div class="dropdown">
-        <button class="dropbtn">
+        <button class="dropbtn" :key="userForHeader">
           <i class="fa fa-caret-down"></i>
           {{ userForHeader }}
         </button>

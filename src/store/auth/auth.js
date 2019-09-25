@@ -9,7 +9,7 @@ import { Base64 } from 'js-base64';
 const state = {
     username: '',
     lastname: '',
-    token: '',
+    token: localStorage.getItem('token') || '',
     NidUser: null,
 }
 
@@ -59,6 +59,7 @@ const actions = {
                     firstname,
                     lastname
                 } = JSON.parse(Base64.decode(splitted[1]));
+                localStorage.setItem('token', token);
                 commit('authUser', {
                     token,
                     NidUser,

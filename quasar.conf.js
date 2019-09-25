@@ -60,7 +60,8 @@ module.exports = function(ctx) {
                 'QMarkupTable',
                 'QOptionGroup',
                 'QBtnDropdown',
-                'QAvatar'
+                'QAvatar',
+                'QLinearProgress'
             ],
 
             directives: [

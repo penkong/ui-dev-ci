@@ -1,6 +1,16 @@
 <template>
   <div class="ci-list" dir="rtl">
-    <table class="data-table">
+    <q-linear-progress
+      indeterminate
+      stripe
+      :buffer="0"
+      :value="0.99"
+      v-if="progressBar"
+      color="light-blue-6"
+      :key="domainName"
+      class="q-mt-sm"
+    />
+    <table ref="table" v-if="!progressBar" class="data-table">
       <thead>
         <tr>
           <th style="font-size: 0.6rem;">
@@ -38,7 +48,8 @@ export default {
     return {
       text: "",
       options: null,
-      searchTerm: ""
+      searchTerm: "",
+      progressBar: false
     };
   },
   created() {
@@ -52,6 +63,7 @@ export default {
     },
     async loadCiList() {
       try {
+        this.progressBar = true;
         const url = `${process.env.ciServer}/ci/getcilist`;
         const result = await this.axios.post(url, {
           domainName: this.domainName
@@ -60,6 +72,7 @@ export default {
         if (data) {
           this.options = data;
         }
+        this.progressBar = false;
         return this.options;
       } catch (error) {
         console.log(error);

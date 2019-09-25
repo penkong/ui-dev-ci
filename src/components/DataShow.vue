@@ -25,7 +25,13 @@
         v-if="domainName && !ciNameFromDataShow"
         class="col-10 row justify-around q-mt-sm q-gutter-y-xs"
       >
-        <CiListLoader :domainName="domainName" @ciNameCatch="ciNameCatch" :key="domainName" />
+        <CiListLoader
+          ref="half"
+          style="width: 25%; margin-left: auto; margin-top: 2.6rem; margin-right:1.6rem;"
+          :domainName="domainName"
+          @ciNameCatch="ciNameCatch"
+          :key="domainName"
+        />
       </div>
       <div class="col-10 row justify-around q-mt-sm q-gutter-y-xs" :key="domainName">
         <div class="fit row wrap justify-end items-start content-start">
@@ -35,6 +41,7 @@
             :ciName="ciNameFromDataShow"
           />
         </div>
+
         <div
           v-if="domainName && ciNameFromDataShow"
           :key="domainName"

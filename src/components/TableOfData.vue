@@ -2,7 +2,23 @@
 
 <template>
   <div>
-    <table class="data-table fixed_header" @load="loadDataTable">
+    <q-linear-progress
+      indeterminate
+      stripe
+      :buffer="0"
+      :value="0.99"
+      v-if="progressBar && !options"
+      color="light-blue"
+      :key="domainName"
+      class="q-mt-sm"
+    />
+    <table
+      ref="table"
+      v-if="!progressBar && options"
+      :key="progressBar"
+      class="data-table fixed_header"
+      @load="loadDataTable"
+    >
       <thead>
         <tr>
           <th style="padding-bottom: 0.15rem;width: 8rem;text-align: center;">شماره</th>
@@ -61,7 +77,8 @@ export default {
   data() {
     return {
       sizes: ["xs"],
-      options: null
+      options: null,
+      progressBar: false
     };
   },
 
@@ -76,6 +93,7 @@ export default {
   methods: {
     async loadDataTable(name, domName) {
       try {
+        this.proggresbar = true;
         const url = `${process.env.ciServer}/ci/get`;
         const confObj = {
           domainName: domName,
@@ -86,6 +104,7 @@ export default {
         if (data) {
           this.options = data;
         }
+        this.proggresbar = false;
         return this.options;
       } catch (error) {
         console.log(error);
