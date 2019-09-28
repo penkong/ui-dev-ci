@@ -88,7 +88,9 @@ export default {
         this.options.push(payload);
       }
     });
-    this.loadDataTable(this.ciName, this.domainName);
+    if (this.ciName && this.domainName) {
+      this.loadDataTable(this.ciName, this.domainName);
+    }
   },
   methods: {
     async loadDataTable(name, domName) {
@@ -97,21 +99,21 @@ export default {
         const url = `${process.env.ciServer}/ci/get`;
         const confObj = {
           domainName: domName,
-          ciName: name.toString()
+          ciName: name
         };
-        let result = await this.axios.post(url, confObj);
-        const data = result.data;
+        let response = await this.axios.post(url, confObj);
+        const data = response.data;
         if (data) {
           this.options = data;
         }
         this.proggresbar = false;
         return this.options;
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     },
     async deleteRow(idForDelete) {
-      const url = "http://localhost:5000/ci/delete";
+      const url = `${process.env.ciServer}/ci/delete`;
       const idForExec = this.options.find(el => el.id === idForDelete).id;
       const confObj = {
         id: parseInt(idForExec),
@@ -119,10 +121,10 @@ export default {
         ciName: this.ciName
       };
       try {
-        let result = await this.axios.post(url, confObj);
-        if (result) this.loadDataTable(this.ciName, this.domainName);
+        let response = await this.axios.post(url, confObj);
+        if (response) this.loadDataTable(this.ciName, this.domainName);
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     },
     editedRow(val) {

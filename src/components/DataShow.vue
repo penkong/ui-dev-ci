@@ -14,7 +14,7 @@
             name="application"
             style="border: none;"
           >
-            <option value="select" disabled selected>انتخاب کنید</option>
+            <option value="select" selected>انتخاب کنید</option>
             <option value="water">آب</option>
             <option value="gas">گاز</option>
             <option value="mine">معدن</option>
